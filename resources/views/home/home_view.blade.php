@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manusia Pintar 2024</title>
+    <title>Home View Penonton</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
     <style>
@@ -50,6 +50,7 @@
             line-height: 200px;
             color: white;
             font-size: 24px;
+            border-radius: 40px;
         }
         .announcement-bar {
             background-color: #5a6d6f;
@@ -104,11 +105,10 @@
 
     <div class="announcement-bar">
         <div class="d-flex justify-content-between align-items-center">
-            <a href="#" class="announcement-link">
+            <a class="announcement-link">
                 <img src="{{ asset('images/announcement-icon.png') }}" alt="Pengumuman Icon" class="announcement-icon">
                 Pengumuman
             </a>
-            <a href="#" class="announcement-link">Lihat Semua</a>
         </div>
         <div class="announcement-content mt-3">
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, ligula eu pellentesque fermentum, justo metus dictum urna, eget ullamcorper lorem ex nec lectus. Integer venenatis feugiat eros, at cursus odio convallis eget. Morbi vestibulum ligula a sapien fringilla, at venenatis ipsum vestibulum. Nunc placerat libero ut dolor sagittis, ac cursus lorem auctor. Donec sed augue nec urna consectetur hendrerit. Sed sit amet metus ut nulla euismod consequat. Curabitur accumsan dui eu justo sollicitudin, nec lacinia urna venenatis. Aenean tincidunt magna vel sem sagittis, non vestibulum lacus facilisis. Cras posuere arcu at eros ullamcorper, vel elementum sem posuere. Fusce non odio sapien.</p>

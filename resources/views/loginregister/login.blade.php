@@ -1,186 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manusia Pintar 2024</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+    <title>Login</title>
     <style>
         body {
-            background-color: #f8f9fa;
             font-family: "Raleway", sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #7f7f7f;
         }
-        .header, .footer {
-            background-color: #333;
-            color: white;
-            padding: 20px 0;
+
+        h1 {
             text-align: center;
+            color: #000000;
+            margin-top: 30px;
+            font-weight: bold;
         }
-        .content {
-            padding: 20px;
+
+        form {
+            max-width: 35%;
+            margin: auto;
+            background-color: #d9d9d9;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .card {
+
+        .form-group {
+            width: 80%;
+            margin: auto;
             margin-bottom: 20px;
         }
-        .list-group-item {
-            background-color: #f8f9fa;
-            border: none;
+
+        label {
+            color: #2c2c2c;
+            font-weight: bold;
+            display: block;
         }
-        .list-group-item.active {
-            background-color: #ffc107;
-            border-color: #ffc107;
-        }
-        .list-group-item .dropdown-toggle::after {
-            display: none;
-        }
-        .map {
-            background-color: #e9ecef;
-            height: 300px;
-            text-align: center;
-            line-height: 300px;
-            color: #6c757d;
-        }
-        .large-image {
-            background-color: #6c757d;
-            height: 200px;
+
+        input[type="text"],
+        input[type="password"] {
             width: 100%;
-            margin-bottom: 20px;
-            text-align: center;
-            line-height: 200px;
+            padding: 10px;
+            border-radius: 9px;
+            border: 1px solid #2c2c2c;
+        }
+
+        button {
+            width: 80%;
+            margin: auto;
+            margin-top: 7%;
+            padding: 10px;
+            background-color: #FEAA00;
             color: white;
-            font-size: 24px;
+            border: none;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-family: 'Poppins', sans-serif;
         }
-        .announcement-bar {
-            background-color: #5a6d6f;
-            color: #ffc107;
-            border-radius: 10px;
-            padding: 20px;
-            margin-bottom: 20px;
+
+        button:hover {
+            background-color: #6c7a01;
         }
-        .announcement-bar a {
-            color: #ffc107;
-            text-decoration: none;
-        }
-        .announcement-bar a:hover {
-            text-decoration: underline;
-        }
-        .announcement-icon {
-            margin-right: 10px;
-        }
-        .announcement-content {
-            background-color: #D9D9D9;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 10px;
-            color: black;
+
+        p {
+            text-align: center;
+            margin-top: 20px;
         }
     </style>
 </head>
+
 <body>
-
-<div class="header">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-2">
-                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid">
+    <div class="mx-auto mt-4">
+        <form action="" method="POST">
+            @csrf
+            <h1>Login</h1>
+            <div class="form-group">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" value="{{ old('username') }}" name="username" id="username" class="form-control">
             </div>
-            <div class="col-md-10">
-                <nav class="nav justify-content-end">
-                    <a class="nav-link text-white" href="#">Beranda</a>
-                    <a class="nav-link text-white" href="#">Panduan</a>
-                    <a class="nav-link text-white" href="#">FAQ</a>
-                    <a class="nav-link text-white" href="#">Login</a>
-                </nav>
+            <div class="form-group">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control">
             </div>
-        </div>
-    </div>
-</div>
-
-<div class="content container">
-    <div class="large-image">
-        GAMBAR BESAR
-    </div>
-
-    <div class="announcement-bar">
-        <div class="d-flex justify-content-between align-items-center">
-            <a href="#" class="announcement-link">
-                <img src="{{ asset('images/announcement-icon.png') }}" alt="Pengumuman Icon" class="announcement-icon">
-                Pengumuman
-            </a>
-            <a href="#" class="announcement-link">Lihat Semua</a>
-        </div>
-        <div class="announcement-content mt-3">
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, ligula eu pellentesque fermentum, justo metus dictum urna, eget ullamcorper lorem ex nec lectus. Integer venenatis feugiat eros, at cursus odio convallis eget. Morbi vestibulum ligula a sapien fringilla, at venenatis ipsum vestibulum. Nunc placerat libero ut dolor sagittis, ac cursus lorem auctor. Donec sed augue nec urna consectetur hendrerit. Sed sit amet metus ut nulla euismod consequat. Curabitur accumsan dui eu justo sollicitudin, nec lacinia urna venenatis. Aenean tincidunt magna vel sem sagittis, non vestibulum lacus facilisis. Cras posuere arcu at eros ullamcorper, vel elementum sem posuere. Fusce non odio sapien.</p>
-        </div>
-    </div>
-
-    <h3 class="text-center mb-4">Jenis-Jenis Manusia Pintar 2024</h3>
-
-    <div class="row">
-        <div class="col-md-4">
-            <div class="list-group">
-                <button class="list-group-item list-group-item-action dropdown-toggle" data-toggle="collapse" data-target="#layananManusiaPintar" aria-expanded="false" aria-controls="layananManusiaPintar">
-                    Layanan Manusia Pintar
-                </button>
-                <div class="collapse" id="layananManusiaPintar">
-                    <a class="list-group-item list-group-item-action">Sub Layanan 1</a>
-                    <a class="list-group-item list-group-item-action">Sub Layanan 2</a>
-                </div>
-
-                <button class="list-group-item list-group-item-action dropdown-toggle" data-toggle="collapse" data-target="#layananData1" aria-expanded="false" aria-controls="layananData1">
-                    Layanan Data
-                </button>
-                <div class="collapse" id="layananData1">
-                    <a class="list-group-item list-group-item-action">Sub Layanan 1</a>
-                    <a class="list-group-item list-group-item-action">Sub Layanan 2</a>
-                </div>
-
-                <button class="list-group-item list-group-item-action dropdown-toggle" data-toggle="collapse" data-target="#layananData2" aria-expanded="false" aria-controls="layananData2">
-                    Layanan Data
-                </button>
-                <div class="collapse" id="layananData2">
-                    <a class="list-group-item list-group-item-action">Sub Layanan 1</a>
-                    <a class="list-group-item list-group-item-action">Sub Layanan 2</a>
-                </div>
-
-                <button class="list-group-item list-group-item-action dropdown-toggle" data-toggle="collapse" data-target="#layananData3" aria-expanded="false" aria-controls="layananData3">
-                    Layanan Data
-                </button>
-                <div class="collapse" id="layananData3">
-                    <a class="list-group-item list-group-item-action">Sub Layanan 1</a>
-                    <a class="list-group-item list-group-item-action">Sub Layanan 2</a>
-                </div>
+            <div class="d-grid">
+                <button name="submit" type="submit">Login</button>
             </div>
-        </div>
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-body text-center">
-                    <div class="rounded-circle bg-warning mx-auto" style="width: 100px; height: 100px;"></div>
-                    <button class="btn btn-warning mt-3">Tampilkan Deskripsi</button>
-                </div>
+            <div class="d-grid">
+                <p>Belum punya akun? <a href="{{ route('register') }}">Register</a></p>
             </div>
-        </div>
+        </form>
     </div>
-
-    <h4 class="text-center my-4">Peta</h4>
-    <div class="text-center mb-3">
-        <button class="btn btn-info mx-1">Peta</button>
-        <button class="btn btn-info mx-1">Perumah Sakit</button>
-        <button class="btn btn-info mx-1">Perumah Sakit</button>
-        <button class="btn btn-info mx-1">Perumah Sakit</button>
-    </div>
-    <div class="map">
-        GAMBAR PETA AAAAAAAAAAAAAAAAAAAA
-    </div>
-</div>
-
-<div class="footer">
-    Footer content here
-</div>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>
