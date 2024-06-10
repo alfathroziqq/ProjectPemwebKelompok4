@@ -24,7 +24,7 @@ class RoleController extends Controller
         ]);
 
         $infologin = [
-            'username'=>$request->usename,
+            'username'=>$request->username,
             'password'=>$request->password,
         ];
 
