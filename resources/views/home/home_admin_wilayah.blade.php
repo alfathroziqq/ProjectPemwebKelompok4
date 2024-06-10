@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<<<<<<< HEAD
     <title>Admin Wilayah</title>
+=======
+    <title>Home Viewers</title>
+>>>>>>> 6cef3d607e2bcb50f9524b3180e637606f83eaac
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
     <style>
@@ -41,6 +45,42 @@
             line-height: 300px;
             color: #6c757d;
         }
+        .large-image {
+            background-color: #6c757d;
+            height: 200px;
+            width: 100%;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 200px;
+            color: white;
+            font-size: 24px;
+            border-radius: 40px;
+        }
+        .announcement-bar {
+            background-color: #5a6d6f;
+            color: #ffc107;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+        .announcement-bar a {
+            color: #ffc107;
+            text-decoration: none;
+        }
+        .announcement-bar a:hover {
+            text-decoration: underline;
+        }
+        .announcement-icon {
+            margin-right: 10px;
+        }
+        .announcement-content {
+            background-color: #D9D9D9;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -49,7 +89,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-2">
-                <img src="{{ asset('path/to/logo.png') }}" alt="Logo" class="img-fluid">
+                <img src="{{ asset('images/logo.png') }}" alt="Logo" class="img-fluid">
             </div>
             <div class="col-md-10">
                 <nav class="nav justify-content-end">
@@ -64,13 +104,19 @@
 </div>
 
 <div class="content container">
-    <div class="row mb-3">
-        <div class="col">
-            <button class="btn btn-secondary btn-block">Pengumuman</button>
-        </div>
-        <div class="col">
-            <button class="btn btn-secondary btn-block">Lihat Semua</button>
-        </div>
+    <div class="large-image">
+        GAMBAR BESAR
+    </div>
+
+    <div class="announcement-bar">
+        <a class="announcement-link">
+            <img src="{{ asset('images/announcement-icon.png') }}" alt="Pengumuman Icon" class="announcement-icon">
+            Pengumuman
+        </a>
+    </div>
+
+    <div class="announcement-content">
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vehicula, ligula eu pellentesque fermentum, justo metus dictum urna, eget ullamcorper lorem ex nec lectus. Integer venenatis feugiat eros, at cursus odio convallis eget. Morbi vestibulum ligula a sapien fringilla, at venenatis ipsum vestibulum. Nunc placerat libero ut dolor sagittis, ac cursus lorem auctor. Donec sed augue nec urna consectetur hendrerit. Sed sit amet metus ut nulla euismod consequat. Curabitur accumsan dui eu justo sollicitudin, nec lacinia urna venenatis. Aenean tincidunt magna vel sem sagittis, non vestibulum lacus facilisis. Cras posuere arcu at eros ullamcorper, vel elementum sem posuere. Fusce non odio sapien.</p>
     </div>
 
     <h3 class="text-center mb-4">Jenis-Jenis Manusia Pintar 2024</h3>
