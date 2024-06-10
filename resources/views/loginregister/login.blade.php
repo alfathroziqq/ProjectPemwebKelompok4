@@ -24,8 +24,8 @@
         <form action="" method="POST">
             @csrf
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" value="{{ old('email') }}" name="email" class="form-control">
+                <label for="username" class="form-label">Username</label>
+                <input type="text" value="{{ old('username') }}" name="username" id="username" class="form-control">
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>
