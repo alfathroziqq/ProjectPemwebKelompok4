@@ -80,7 +80,7 @@
 </head>
 
 <body>
-    <div class="mx-auto mt-4">
+    <div class="mx-auto mt-5">
         <form action="{{ route('login') }}" method="POST">
             @csrf
             <h1>Login</h1>

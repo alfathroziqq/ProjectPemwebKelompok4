@@ -80,10 +80,10 @@
 </head>
 
 <body>
-    <div class="mx-auto mt-4">
+    <div class="mx-auto mt-5">
         <form action="" method="POST">
             @csrf
-            <h1>Login</h1>
+            <h1>Register</h1>
             <div class="form-group">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" value="{{ old('username') }}" name="username" id="username" class="form-control">
