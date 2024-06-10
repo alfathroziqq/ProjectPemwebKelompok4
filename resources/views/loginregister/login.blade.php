@@ -81,7 +81,7 @@
 
 <body>
     <div class="mx-auto mt-4">
-        <form action="" method="POST">
+        <form action="{{ route('login.authenticate') }}" method="POST">
             @csrf
             <h1>Login</h1>
             <div class="form-group">
