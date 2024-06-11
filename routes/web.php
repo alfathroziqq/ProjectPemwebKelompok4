@@ -19,7 +19,7 @@ Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('form
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 // Logout
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // Administrator
 Route::get('/administrator', [AdminisController::class, 'index'])->name('home_administrator')->middleware('role:administrator');

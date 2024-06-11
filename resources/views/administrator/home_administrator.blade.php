@@ -56,7 +56,7 @@
                     <a class="nav-link text-white" href="#">Beranda</a>
                     <a class="nav-link text-white" href="#">Panduan</a>
                     <a class="nav-link text-white" href="#">FAQ</a>
-                    <a class="nav-link text-white" href="#">Login</a>
+                    <a class="nav-link text-white" href="{{ route('logout') }}">Logout</a>
                 </nav>
             </div>
         </div>
