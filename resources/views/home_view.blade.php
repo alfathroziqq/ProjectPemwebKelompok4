@@ -130,7 +130,7 @@
                         <a class="nav-link text-white" href="#">Beranda</a>
                         <a class="nav-link text-white" href="#">Panduan</a>
                         <a class="nav-link text-white" href="#">FAQ</a>
-                        <a class="nav-link text-white" href="{{ route('login') }}">Login</a>
+                        <a class="nav-link text-white" href="{{ route('formlogin') }}">Login</a>
                     </nav>
                 </div>
             </div>

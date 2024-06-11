@@ -81,26 +81,35 @@
 
 <body>
     <div class="mx-auto mt-5">
-        <form action="" method="POST">
+        <form action="{{ route('register') }}" method="POST">
             @csrf
             <h1>Register</h1>
             <div class="form-group">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" value="{{ old('username') }}" name="username" id="username" class="form-control">
+                @error('username')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" id="password" class="form-control">
+                @error('password')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="role" class="form-label">Role</label>
                 <select name="role" id="role" class="form-control">
-                    <option value="Administrator">Administrator</option>
-                    <option value="Admin Wilayah">Admin Wilayah</option>
+                    <option value="administrator">Administrator</option>
+                    <option value="admin_wilayah">Admin Wilayah</option>
                 </select>
+                @error('role')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="d-grid">
-                <button name="submit" type="submit">Login</button>
+                <button name="submit" type="submit">Register</button>
             </div>
             <div class="d-grid">
                 <p>Sudah punya akun? <a href="{{ route('login') }}">Login</a></p>

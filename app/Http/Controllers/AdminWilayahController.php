@@ -1,0 +1,14 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
+class AdminWilayahController extends Controller
+{
+    public function index()
+    {
+        return view('admin_wilayah.home_admin_wilayah');
+    }
+}

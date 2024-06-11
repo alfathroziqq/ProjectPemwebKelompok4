@@ -81,22 +81,28 @@
 
 <body>
     <div class="mx-auto mt-5">
-        <form action="{{ route('login') }}" method="POST">
+        <form method="POST" action="{{ route('login') }}">
             @csrf
             <h1>Login</h1>
             <div class="form-group">
                 <label for="username" class="form-label">Username</label>
                 <input type="text" value="{{ old('username') }}" name="username" id="username" class="form-control">
+                @error('username')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="form-group">
                 <label for="password" class="form-label">Password</label>
                 <input type="password" name="password" id="password" class="form-control">
+                @error('password')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
             <div class="d-grid">
                 <button name="submit" type="submit">Login</button>
             </div>
             <div class="d-grid">
-                <p>Belum punya akun? <a href="{{ route('register') }}">Register</a></p>
+                <p>Belum punya akun? <a href="{{ route('formregister') }}">Register</a></p>
             </div>
         </form>
     </div>
