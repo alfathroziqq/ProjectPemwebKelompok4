@@ -18,11 +18,13 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('formregister');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-// Logout
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
-// Administrator
-Route::get('/administrator', [AdminisController::class, 'index'])->name('home_administrator')->middleware('role:administrator');
-
-// Admin Wilayah
-Route::get('/admin_wilayah', [AdminWilayahController::class, 'index'])->name('home_admin_wilayah')->middleware('role:admin_wilayah');
+Route::middleware(['auth'])->group(function ()
+{
+    // Administrator
+    Route::get('/administrator', [AdminisController::class, 'index'])->name('home_administrator')->middleware('role:administrator');
+    // Admin Wilayah
+    Route::get('/admin_wilayah', [AdminWilayahController::class, 'index'])->name('home_admin_wilayah')->middleware('role:admin_wilayah');
+    // Logout
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
