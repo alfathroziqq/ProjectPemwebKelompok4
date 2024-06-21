@@ -4,6 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminisController;
 use App\Http\Controllers\AdminWilayahController;
+use App\Http\Controllers\KartuKeluargaController;
+use App\Http\Controllers\LaporanRumahController;
+use App\Http\Controllers\RiwayatPerubahanRumahController;
+use App\Http\Controllers\RumahController;
+use App\Http\Controllers\WilayahController;
 
 // Halaman Home View
 Route::get('/', function () {
@@ -18,13 +23,19 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('formregister');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
+Route::middleware(['auth', 'role:admin_wilayah'])->group(function () {
+    Route::resource('wilayah', WilayahController::class);
+    Route::resource('kartu_keluarga', KartuKeluargaController::class);
+    Route::resource('rumah', RumahController::class);
+    Route::resource('riwayat_perubahan_rumah', RiwayatPerubahanRumahController::class);
+    Route::resource('laporan_rumah', LaporanRumahController::class);
+});
 
-Route::middleware(['auth'])->group(function ()
-{
+Route::middleware(['auth'])->group(function () {
     // Administrator
     Route::get('/administrator', [AdminisController::class, 'index'])->name('home_administrator')->middleware('role:administrator');
     // Admin Wilayah
-    Route::get('/admin_wilayah', [AdminWilayahController::class, 'index'])->name('home_admin_wilayah')->middleware('role:admin_wilayah');
+    Route::get('/admin_wilayah', [AdminWilayahController::class, 'index'])->name('master')->middleware('role:admin_wilayah');
     // Logout
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });

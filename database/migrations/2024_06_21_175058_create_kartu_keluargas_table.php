@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('rumah', function (Blueprint $table) {
-            $table->id('id_rumah')->primary();
-            $table->unsignedBigInteger('id_kk');
+        Schema::create('kartu_keluargas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nomor_kk')->unique();
+            $table->string('kepala_keluarga');
             $table->string('alamat');
-            $table->float('luas_rumah');
-            $table->integer('jumlah_kamar');
+            $table->unsignedBigInteger('wilayah_id');
+            $table->foreign('wilayah_id')->references('id')->on('wilayahs')->onDelete('CASCADE');
             $table->timestamps();
-
-            $table->foreign('id_kk')->references('id_kk')->on('kartu_keluarga')->onDelete('cascade');
         });
     }
 
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('rumah');
+        Schema::dropIfExists('kartu_keluargas');
     }
 };

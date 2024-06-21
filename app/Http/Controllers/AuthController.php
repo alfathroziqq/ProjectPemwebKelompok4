@@ -54,7 +54,7 @@ class AuthController extends Controller
             if ($user->role === 'administrator') {
                 return redirect()->route('home_administrator');
             } elseif ($user->role === 'admin_wilayah') {
-                return redirect()->route('home_admin_wilayah');
+                return redirect()->route('master');
             }
         }
 
