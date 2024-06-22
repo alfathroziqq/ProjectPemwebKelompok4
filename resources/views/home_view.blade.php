@@ -300,7 +300,7 @@
                         @csrf
                         <div class="form-group">
                             <label for="username" class="form-label">Username</label>
-                            <input type="text" value="{{ old('username') }}" name="username" id="username"
+                            <input type="text" value="{{ old('username') }}" name="username" id="username" placeholder="Masukkan Username"
                                 class="form-control" required>
                             @error('username')
                                 <div class="alert alert-danger">{{ $message }}</div>
@@ -308,7 +308,7 @@
                         </div>
                         <div class="form-group">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" required>
+                            <input type="password" name="password" id="password" placeholder="Masukkan Password" class="form-control" required>
                             @error('password')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror

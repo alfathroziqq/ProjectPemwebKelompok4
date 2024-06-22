@@ -161,6 +161,19 @@
                     modal.find('#perubahan').text(perubahan);
                     modal.find('#tanggal_perubahan').text(tanggal);
                 });
+
+                // Menampilkan modal konfirmasi hapus ketika tombol hapus di-klik
+                $('.delete').on('click', function() {
+                    var form = $(this).closest('form');
+                    var action = form.attr('action');
+                    $('#deleteForm').attr('action', action);
+                    $('#deleteConfirmationModal').modal('show');
+                });
+
+                // Menyembunyikan modal konfirmasi hapus ketika tombol batal di-klik
+                $('#deleteConfirmationModal button[data-dismiss="modal"]').on('click', function() {
+                    $('#deleteConfirmationModal').modal('hide');
+                });
             });
         </script>
 
@@ -220,10 +233,10 @@
                                             class="material-icons">&#xE254;</i></a>
                                     <form
                                         action="{{ route('riwayat_perubahan_rumah.destroy', $riwayatPerubahanRumah->id) }}"
-                                        method="POST" style="display:inline;">
+                                        method="POST" style="display:inline;" data-id="{{ $riwayatPerubahanRumah->id }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="delete" title="Hapus" data-toggle="tooltip"
+                                        <button type="button" class="delete" title="Delete" data-toggle="tooltip"
                                             style="border:none; background:none;"><i
                                                 class="material-icons">&#xE872;</i></button>
                                     </form>
@@ -270,6 +283,32 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Riwayat Perubahan</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Anda yakin ingin menghapus <span style="font-weight: bold">RIWAYAT PERUBAHAN</span> ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form id="deleteForm" action="" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

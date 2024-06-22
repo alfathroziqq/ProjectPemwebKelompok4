@@ -9,6 +9,10 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
+    public function showRegisterForm()
+    {
+        return view('home_view'); // Pastikan Anda memiliki view yang sesuai
+    }
     // Tangani pendaftaran pengguna
         public function register(Request $request)
     {
@@ -27,6 +31,10 @@ class AuthController extends Controller
         return redirect()->route('home')->with('success', 'Registration successful. Please login.');
     }
 
+    public function showLoginForm()
+    {
+        return view('home_view'); // Pastikan Anda memiliki view yang sesuai
+    }
 
     public function login(Request $request)
     {

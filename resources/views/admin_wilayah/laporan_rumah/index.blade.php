@@ -167,6 +167,19 @@
                     modal.find('#deskripsi').text(deskripsi);
                     modal.find('#tanggal_laporan').text(tanggal);
                 });
+
+                // Menampilkan modal konfirmasi hapus ketika tombol hapus di-klik
+                $('.delete').on('click', function() {
+                    var form = $(this).closest('form');
+                    var action = form.attr('action');
+                    $('#deleteForm').attr('action', action);
+                    $('#deleteConfirmationModal').modal('show');
+                });
+
+                // Menyembunyikan modal konfirmasi hapus ketika tombol batal di-klik
+                $('#deleteConfirmationModal button[data-dismiss="modal"]').on('click', function() {
+                    $('#deleteConfirmationModal').modal('hide');
+                });
             });
         </script>
 
@@ -213,20 +226,21 @@
                                 <td>{{ $laporanRumah->deskripsi }}</td>
                                 <td>{{ $laporanRumah->tanggal_laporan }}</td>
                                 <td>
-                                    <a href="#" class="view" title="Lihat" data-toggle="modal" data-target="#detailModal"
-    data-rumah="{{ $laporanRumah->rumah->alamat }}"
-    data-deskripsi="{{ $laporanRumah->deskripsi }}"
-    data-tanggal="{{ $laporanRumah->tanggal_laporan }}">
-    <i class="material-icons">&#xE417;</i>
-</a>
+                                    <a href="#" class="view" title="Lihat" data-toggle="modal"
+                                        data-target="#detailModal" data-rumah="{{ $laporanRumah->rumah->alamat }}"
+                                        data-deskripsi="{{ $laporanRumah->deskripsi }}"
+                                        data-tanggal="{{ $laporanRumah->tanggal_laporan }}">
+                                        <i class="material-icons">&#xE417;</i>
+                                    </a>
 
                                     <a href="{{ route('laporan_rumah.edit', $laporanRumah->id) }}" class="edit"
                                         title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
-                                    <form action="{{ route('laporan_rumah.destroy', $laporanRumah->id) }}" method="POST"
-                                        style="display:inline;">
+                                        <form
+                                        action="{{ route('laporan_rumah.destroy', $laporanRumah->id) }}"
+                                        method="POST" style="display:inline;" data-id="{{ $laporanRumah->id }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="delete" title="Hapus" data-toggle="tooltip"
+                                        <button type="button" class="delete" title="Delete" data-toggle="tooltip"
                                             style="border:none; background:none;"><i
                                                 class="material-icons">&#xE872;</i></button>
                                     </form>
@@ -269,34 +283,60 @@
     </body>
 
     <!-- Modal Detail Laporan Rumah -->
-<div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="detailModalLabel">Detail Laporan Rumah</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <dl class="row">
-                    <dt class="col-sm-4">Rumah:</dt>
-                    <dd class="col-sm-8" id="rumah"></dd>
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="detailModalLabel">Detail Laporan Rumah</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <dl class="row">
+                        <dt class="col-sm-4">Rumah:</dt>
+                        <dd class="col-sm-8" id="rumah"></dd>
 
-                    <dt class="col-sm-4">Deskripsi:</dt>
-                    <dd class="col-sm-8" id="deskripsi"></dd>
+                        <dt class="col-sm-4">Deskripsi:</dt>
+                        <dd class="col-sm-8" id="deskripsi"></dd>
 
-                    <dt class="col-sm-4">Tanggal Laporan:</dt>
-                    <dd class="col-sm-8" id="tanggal_laporan"></dd>
-                </dl>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <dt class="col-sm-4">Tanggal Laporan:</dt>
+                        <dd class="col-sm-8" id="tanggal_laporan"></dd>
+                    </dl>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
+    <!-- Delete Confirmation Modal -->
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Laporan Rumah</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Anda yakin ingin menghapus <span style="font-weight: bold">LAPORAN RUMAH</span> ini?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <form id="deleteForm" action="" method="POST" style="display: inline;">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </html>
 @endsection

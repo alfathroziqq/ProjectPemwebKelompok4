@@ -3,7 +3,6 @@
 @section('content')
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -173,9 +172,21 @@
                 $('#detailRumahModal button[data-dismiss="modal"]').on('click', function() {
                     $('#detailRumahModal').modal('hide');
                 });
+
+                // Menampilkan modal konfirmasi hapus ketika tombol hapus di-klik
+                $('.delete').on('click', function() {
+                    var form = $(this).closest('form');
+                    var action = form.attr('action');
+                    $('#deleteForm').attr('action', action);
+                    $('#deleteConfirmationModal').modal('show');
+                });
+
+                // Menyembunyikan modal konfirmasi hapus ketika tombol batal di-klik
+                $('#deleteConfirmationModal button[data-dismiss="modal"]').on('click', function() {
+                    $('#deleteConfirmationModal').modal('hide');
+                });
             });
         </script>
-
     </head>
 
     <body>
@@ -234,14 +245,13 @@
                                         data-toggle="tooltip">
                                         <i class="material-icons">&#xE254;</i>
                                     </a>
-                                    <form action="{{ route('rumah.destroy', $rumah->id) }}" method="POST"
-                                        style="display:inline;">
+                                    <form action="{{ route('rumah.destroy', $rumah->id) }}"
+                                        method="POST" style="display:inline;" data-id="{{ $rumah->id }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="delete" title="Delete" data-toggle="tooltip"
-                                            style="border:none; background:none;">
-                                            <i class="material-icons">&#xE872;</i>
-                                        </button>
+                                        <button type="button" class="delete" title="Delete" data-toggle="tooltip"
+                                            style="border:none; background:none;"><i
+                                                class="material-icons">&#xE872;</i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -249,7 +259,6 @@
                                 $i++;
                             @endphp
                         @endforeach
-
                     </tbody>
                 </table>
                 <div class="clearfix">
@@ -278,44 +287,69 @@
                 </div>
             </div>
         </div>
-    </body>
 
-    <!-- Modal Detail Rumah -->
-    <div class="modal fade" id="detailRumahModal" tabindex="-1" role="dialog" aria-labelledby="detailRumahModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="detailRumahModalLabel">Detail Rumah</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <dl class="row">
-                        <dt class="col-sm-4">Nomor KK :</dt>
-                        <dd class="col-sm-8" id="nomor_kk_rumah"></dd>
+        <!-- Modal Detail Rumah -->
+        <div class="modal fade" id="detailRumahModal" tabindex="-1" role="dialog" aria-labelledby="detailRumahModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="detailRumahModalLabel">Detail Rumah</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <dl class="row">
+                            <dt class="col-sm-4">Nomor KK :</dt>
+                            <dd class="col-sm-8" id="nomor_kk_rumah"></dd>
 
-                        <dt class="col-sm-4">Alamat :</dt>
-                        <dd class="col-sm-8" id="alamat_rumah"></dd>
+                            <dt class="col-sm-4">Alamat :</dt>
+                            <dd class="col-sm-8" id="alamat_rumah"></dd>
 
-                        <dt class="col-sm-4">Luas (m²) : </dt>
-                        <dd class="col-sm-8" id="luas_rumah"></dd>
+                            <dt class="col-sm-4">Luas (m²) : </dt>
+                            <dd class="col-sm-8" id="luas_rumah"></dd>
 
-                        <dt class="col-sm-4">Jumlah Kamar :</dt>
-                        <dd class="col-sm-8" id="jumlah_kamar"></dd>
+                            <dt class="col-sm-4">Jumlah Kamar :</dt>
+                            <dd class="col-sm-8" id="jumlah_kamar"></dd>
 
-                        <dt class="col-sm-4">Spesifikasi Rumah :</dt>
-                        <dd class="col-sm-8" id="spesifikasi_rumah"></dd>
-                    </dl>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <dt class="col-sm-4">Spesifikasi Rumah :</dt>
+                            <dd class="col-sm-8" id="spesifikasi_rumah"></dd>
+                        </dl>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
+        <!-- Delete Confirmation Modal -->
+        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Rumah</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Anda yakin ingin menghapus <span style="font-weight: bold">RUMAH</span> ini?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form id="deleteForm" action="" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+    </body>
     </html>
 @endsection

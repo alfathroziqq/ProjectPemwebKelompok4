@@ -103,6 +103,8 @@
 
             table.table td a.delete {
                 color: #E34724;
+                border: none;
+                background: none;
             }
 
             table.table td i {
@@ -150,8 +152,29 @@
             }
         </style>
         <script>
+            function showDeleteModal(button) {
+                var id = button.getAttribute('data-id');
+                var form = document.getElementById('deleteForm');
+                form.action = '/wilayah/' + id;
+                $('#deleteConfirmationModal').modal('show');
+            }
+
             $(document).ready(function() {
                 $('[data-toggle="tooltip"]').tooltip();
+
+                // Fungsi untuk menampilkan modal konfirmasi hapus
+                $('.delete').on('click', function() {
+                    var id = $(this).closest('form').attr('data-id');
+                    var form = $('#deleteForm');
+                    form.attr('action', '/wilayah/' + id);
+                    $('#deleteConfirmationModal').modal('show');
+                });
+
+                // Menutup modal konfirmasi hapus saat tombol close atau tombol dengan data-dismiss="modal" diklik
+                $('#deleteConfirmationModal .close, #deleteConfirmationModal button[data-dismiss="modal"]').on('click',
+                    function() {
+                        $('#deleteConfirmationModal').modal('hide');
+                    });
             });
         </script>
     </head>
@@ -195,15 +218,17 @@
                                 <td>{{ $wilayah->nama_provinsi }}</td>
                                 <td>{{ $wilayah->kartu_keluargas_count }}</td>
                                 <td>
-                                    <a href="{{ route('wilayah.edit', $wilayah->id) }}" class="edit" title="Edit" data-toggle="tooltip">
+                                    <a href="{{ route('wilayah.edit', $wilayah->id) }}" class="edit" title="Edit"
+                                        data-toggle="tooltip">
                                         <i class="material-icons">&#xE254;</i>
                                     </a>
-                                    <form action="{{ route('wilayah.destroy', $wilayah->id) }}" method="POST" style="display:inline;">
+                                    <form action="{{ route('wilayah.destroy', $wilayah->id) }}" method="POST"
+                                        style="display:inline;" data-id="{{ $wilayah->id }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="delete" title="Delete" data-toggle="tooltip" style="border:none; background:none;">
-                                            <i class="material-icons">&#xE872;</i>
-                                        </button>
+                                        <button type="button" class="delete" title="Delete" data-toggle="tooltip"
+                                            style="border:none; background:none;"><i
+                                                class="material-icons">&#xE872;</i></button>
                                     </form>
                                 </td>
                             </tr>
@@ -212,7 +237,6 @@
                             @endphp
                         @endforeach
                     </tbody>
-
                 </table>
                 <div class="clearfix">
                     <div class="hint-text">Menampilkan <b>{{ $wilayahs->count() }}</b> dari
@@ -238,7 +262,32 @@
                         </li>
                     </ul>
                 </div>
+            </div>
+        </div>
 
+        <!-- Delete Confirmation Modal -->
+        <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Wilayah</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        Anda yakin ingin menghapus <span style="font-weight: bold">WILAYAH</span> ini?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <form id="deleteForm" action="" method="POST" style="display: inline;">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
