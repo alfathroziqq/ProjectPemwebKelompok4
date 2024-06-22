@@ -16,20 +16,10 @@ Route::get('/', function () {
 })->name('home');
 
 // Halaman Login
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('formlogin');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 // Halaman Register
-Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('formregister');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
-
-Route::middleware(['auth', 'role:admin_wilayah'])->group(function () {
-    Route::resource('wilayah', WilayahController::class);
-    Route::resource('kartu_keluarga', KartuKeluargaController::class);
-    Route::resource('rumah', RumahController::class);
-    Route::resource('riwayat_perubahan_rumah', RiwayatPerubahanRumahController::class);
-    Route::resource('laporan_rumah', LaporanRumahController::class);
-});
 
 Route::middleware(['auth'])->group(function () {
     // Administrator
@@ -38,4 +28,13 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin_wilayah', [AdminWilayahController::class, 'index'])->name('master')->middleware('role:admin_wilayah');
     // Logout
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+//Jobdesc Admin Wilayah
+Route::middleware(['auth', 'role:admin_wilayah'])->group(function () {
+    Route::resource('wilayah', WilayahController::class);
+    Route::resource('kartu_keluarga', KartuKeluargaController::class);
+    Route::resource('rumah', RumahController::class);
+    Route::resource('riwayat_perubahan_rumah', RiwayatPerubahanRumahController::class);
+    Route::resource('laporan_rumah', LaporanRumahController::class);
 });

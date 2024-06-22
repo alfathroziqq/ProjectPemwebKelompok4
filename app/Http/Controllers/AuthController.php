@@ -9,14 +9,8 @@ use App\Models\User;
 
 class AuthController extends Controller
 {
-    // Tampilkan formulir pendaftaran
-    public function showRegisterForm()
-    {
-        return view('loginregister.register');
-    }
-
     // Tangani pendaftaran pengguna
-    public function register(Request $request)
+        public function register(Request $request)
     {
         $request->validate([
             'username' => 'required|max:255|unique:users',
@@ -30,14 +24,9 @@ class AuthController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return redirect()->route('login')->with('success', 'Registration successful. Please login.');
+        return redirect()->route('home')->with('success', 'Registration successful. Please login.');
     }
 
-    // Tampilkan formulir login
-    public function showLoginForm()
-    {
-        return view('loginregister.login');
-    }
 
     public function login(Request $request)
     {

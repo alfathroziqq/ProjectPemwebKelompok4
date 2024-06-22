@@ -7,6 +7,9 @@
     <title>Home View Penonton</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
         body {
             background-color: #f8f9fa;
@@ -114,6 +117,53 @@
             margin-top: 10px;
             color: black;
         }
+
+        /* Custom styles for the modal forms */
+        .modal-content {
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            padding: 20px;
+        }
+
+        .modal-header {
+            border-bottom: none;
+        }
+
+        .form-control {
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .btn-login {
+            background-color: #ffc107;
+            color: white;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .btn-register {
+            background-color: #ffc107;
+            color: white;
+            border-radius: 5px;
+            width: 100%;
+        }
+
+        .modal-footer {
+            border-top: none;
+        }
+
+        .modal-title {
+            font-size: 24px;
+        }
+
+        .text-link {
+            color: #ffc107;
+            text-decoration: none;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 
@@ -129,7 +179,8 @@
                     <nav class="nav justify-content-end">
                         <a class="nav-link text-white" href="#">Beranda</a>
                         <a class="nav-link text-white" href="#">Panduan</a>
-                        <a class="nav-link text-white" href="{{ route('formlogin') }}">Login</a>
+                        <a class="nav-link text-white" href="#" data-toggle="modal"
+                            data-target="#loginModal">Login</a>
                     </nav>
                 </div>
             </div>
@@ -213,24 +264,138 @@
         </div>
 
         <h4 class="text-center my-4">Peta</h4>
-        <div class="text-center mb-3">
-            <button class="btn btn-info mx-1">Peta</button>
-            <button class="btn btn-info mx-1">Perumah Sakit</button>
-            <button class="btn btn-info mx-1">Perumah Sakit</button>
-            <button class="btn btn-info mx-1">Perumah Sakit</button>
-        </div>
         <div class="map">
-            GAMBAR PETA AAAAAAAAAAAAAAAAAAAA
+            Peta Interaktif
         </div>
+
     </div>
 
     <div class="footer">
-        Footer content here
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-left">
+                    &copy; 2024 Rumah Miskin
+                </div>
+                <div class="col-md-6 text-center text-md-right">
+                    <a href="#" class="text-white">Privacy Policy</a> | <a href="#" class="text-white">Terms
+                        of Service</a>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Login</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" value="{{ old('username') }}" name="username" id="username"
+                                class="form-control" required>
+                            @error('username')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" class="form-control" required>
+                            @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-login">Login</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mr-auto">Belum punya akun? <a href="#" class="text-link" data-toggle="modal"
+                            data-target="#registerModal">Register</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ route('register') }}" method="POST">
+                        @csrf
+                        <div class="form-group">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" value="{{ old('username') }}" name="username" id="username"
+                                placeholder="Masukkan Username" class="form-control" required>
+                            @error('username')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="password" id="password" placeholder="Masukkan Password"
+                                class="form-control" required>
+                            @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" name="confirm_password" id="confirm_password"
+                                placeholder="Konfirmasi Password" class="form-control" required>
+                            @error('password')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="role" class="form-label">Role</label>
+                            <select name="role" id="role" class="form-control">
+                                <option value="administrator">Administrator</option>
+                                <option value="admin_wilayah">Admin Wilayah</option>
+                            </select>
+                            @error('role')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-register">Register</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="mr-auto">Sudah punya akun? <a href="{{ route('login') }}" class="text-link"
+                            data-toggle="modal" data-target="#loginModal">Login</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Ensure only one modal is open at a time
+        $('#loginModal').on('show.bs.modal', function() {
+            $('#registerModal').modal('hide');
+        });
+
+        $('#registerModal').on('show.bs.modal', function() {
+            $('#loginModal').modal('hide');
+        });
+    </script>
+
 </body>
 
 </html>
