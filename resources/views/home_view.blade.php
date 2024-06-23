@@ -313,6 +313,11 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
+                        @if ($errors->has('credentials'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('credentials') }}
+                            </div>
+                        @endif
                         <div class="d-grid">
                             <button type="submit" class="btn btn-login">Login</button>
                         </div>

@@ -21,6 +21,15 @@ class CheckRole
             return $next($request);
         }
 
+        // Redirect to specific URLs based on the user's role
+        if ($user) {
+            if ($user->role === 'administrator') {
+                return redirect('/administrator');
+            } elseif ($user->role === 'admin_wilayah') {
+                return redirect('/admin_wilayah');
+            }
+        }
+
         abort(403, 'Forbidden');
     }
 }
