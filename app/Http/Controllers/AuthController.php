@@ -11,7 +11,7 @@ class AuthController extends Controller
 {
     public function showRegisterForm()
     {
-        return view('home_view'); // Pastikan Anda memiliki view yang sesuai
+        return view('home_view');
     }
     // Tangani pendaftaran pengguna
         public function register(Request $request)
@@ -33,7 +33,7 @@ class AuthController extends Controller
 
     public function showLoginForm()
     {
-        return view('home_view'); // Pastikan Anda memiliki view yang sesuai
+        return view('home_view');
     }
 
     public function login(Request $request)
@@ -60,7 +60,6 @@ class AuthController extends Controller
         ]);
     }
 
-    // Tangani logout pengguna
     public function logout(Request $request)
     {
         Auth::logout();

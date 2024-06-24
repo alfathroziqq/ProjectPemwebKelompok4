@@ -23,7 +23,6 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register.form');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
-
 Route::middleware(['auth'])->group(function () {
     // Administrator
     Route::get('/administrator', [AdminisController::class, 'index'])->name('home_administrator')->middleware('role:administrator');
@@ -33,11 +32,12 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-//Jobdesc Admin Wilayah
+// Jobdesc Admin Wilayah
 Route::middleware(['auth', 'role:admin_wilayah'])->group(function () {
-    Route::resource('wilayah', WilayahController::class);
+    Route::resource('wilayah', WilayahController::class)->except(['show']);
     Route::resource('kartu_keluarga', KartuKeluargaController::class);
     Route::resource('rumah', RumahController::class);
     Route::resource('riwayat_perubahan_rumah', RiwayatPerubahanRumahController::class);
     Route::resource('laporan_rumah', LaporanRumahController::class);
+    Route::get('wilayah/pdf', [WilayahController::class, 'pdf'])->name('wilayah.pdf');
 });

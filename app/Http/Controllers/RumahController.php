@@ -12,11 +12,11 @@ class RumahController extends Controller
     {
         $search = $request->input('search');
         $rumahs = Rumah::when($search, function ($query) use ($search) {
-                $query->where('alamat', 'LIKE', '%' . $search . '%')
-                    ->orWhere('luas_rumah', 'LIKE', '%' . $search . '%')
-                    ->orWhere('jumlah_kamar', 'LIKE', '%' . $search . '%')
-                    ->orWhere('spesifikasi_rumah', 'LIKE', '%' . $search . '%');
-            })
+            $query->where('alamat', 'LIKE', '%' . $search . '%')
+                ->orWhere('luas_rumah', 'LIKE', '%' . $search . '%')
+                ->orWhere('jumlah_kamar', 'LIKE', '%' . $search . '%')
+                ->orWhere('spesifikasi_rumah', 'LIKE', '%' . $search . '%');
+        })
             ->paginate(10);
 
         return view('admin_wilayah.rumah.index', compact('rumahs'));
