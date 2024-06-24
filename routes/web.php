@@ -40,4 +40,5 @@ Route::middleware(['auth', 'role:admin_wilayah'])->group(function () {
     Route::resource('riwayat_perubahan_rumah', RiwayatPerubahanRumahController::class);
     Route::resource('laporan_rumah', LaporanRumahController::class);
     Route::get('wilayah/pdf', [WilayahController::class, 'pdf'])->name('wilayah.pdf');
+    Route::get('kartu_keluarga/pdf', [KartuKeluargaController::class, 'pdf'])->name('kartu_keluarga.pdf');
 });

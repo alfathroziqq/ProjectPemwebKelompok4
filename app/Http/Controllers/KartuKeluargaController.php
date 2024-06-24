@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\KartuKeluarga;
 use App\Models\Wilayah;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class KartuKeluargaController extends Controller
 {
@@ -82,4 +83,14 @@ class KartuKeluargaController extends Controller
 
         return redirect()->route('kartu_keluarga.index')->with('success', 'Kartu Keluarga berhasil dihapus');
     }
+
+    public function pdf()
+    {
+        $kartuKeluargas = KartuKeluarga::with('wilayah')->get();
+
+        $pdf = PDF::loadView('admin_wilayah.kartu_keluarga.pdf', compact('kartuKeluargas'));
+
+        return $pdf->stream('kartu_keluarga.pdf');
+    }
+
 }

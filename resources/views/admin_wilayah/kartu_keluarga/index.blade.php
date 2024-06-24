@@ -237,8 +237,8 @@
                         </div>
                     </div>
                 </div>
-                <a href="{{ route('kartu_keluarga.create') }}" class="btn btn-success mb-2">Tambah Kartu Keluarga
-                    Baru</a>
+                <a href="{{ route('kartu_keluarga.create') }}" class="btn btn-success mb-2">Tambah Kartu Keluarga Baru</a>
+                <a href="{{ route('kartu_keluarga.pdf') }}" class="btn btn-primary mb-2">Download PDF</a>
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>
