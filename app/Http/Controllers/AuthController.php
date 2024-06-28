@@ -13,8 +13,9 @@ class AuthController extends Controller
     {
         return view('home_view');
     }
+    
     // Tangani pendaftaran pengguna
-        public function register(Request $request)
+    public function register(Request $request)
     {
         $request->validate([
             'username' => 'required|max:255|unique:users',
