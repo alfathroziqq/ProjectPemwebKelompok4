@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\KartuKeluarga;
 use App\Models\Wilayah;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\KartuKeluargaExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class KartuKeluargaController extends Controller
 {
@@ -84,13 +86,16 @@ class KartuKeluargaController extends Controller
         return redirect()->route('kartu_keluarga.index')->with('success', 'Kartu Keluarga berhasil dihapus');
     }
 
-    public function pdf()
+    public function kkpdf()
     {
         $kartuKeluargas = KartuKeluarga::with('wilayah')->get();
-
         $pdf = PDF::loadView('admin_wilayah.kartu_keluarga.pdf', compact('kartuKeluargas'));
+        return $pdf->download('DaftarKK.pdf');
+    }
 
-        return $pdf->stream('kartu_keluarga.pdf');
+    public function kkexport()
+    {
+        return Excel::download(new KartuKeluargaExport, 'DaftarKK.xlsx');
     }
 
 }

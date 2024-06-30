@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Wilayah;
 use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\WilayahExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class WilayahController extends Controller
 {
@@ -20,14 +22,6 @@ class WilayahController extends Controller
         $wilayahs = $query->paginate(10);
 
         return view('admin_wilayah.wilayah.index', compact('wilayahs'));
-    }
-
-    public function pdf()
-    {
-        $wilayahs = Wilayah::withCount('kartuKeluargas')->get();
-
-        $pdf = Pdf::loadView('admin_wilayah.wilayah.pdf', compact('wilayahs'));
-        return $pdf->stream('daftar_wilayah.pdf');
     }
 
     public function create()
@@ -115,5 +109,18 @@ class WilayahController extends Controller
             'Sumatera Selatan',
             'Sumatera Utara'
         ];
+    }
+
+    public function pdf()
+    {
+        $wilayahs = Wilayah::withCount('kartuKeluargas')->get();
+
+        $pdf = Pdf::loadView('admin_wilayah.wilayah.pdf', compact('wilayahs'));
+        return $pdf->download('DaftarWilayah.pdf');
+    }
+
+    public function export()
+    {
+        return Excel::download(new WilayahExport, 'DaftarWilayah.xlsx');
     }
 }

@@ -199,7 +199,8 @@
                     </div>
                 </div>
                 <a href="{{ route('wilayah.create') }}" class="btn btn-success mb-2">Tambah Wilayah Baru</a>
-                <a href="{{ route('wilayah.pdf') }}" class="btn btn-primary mb-2">Download PDF</a>
+                <a href="{{ route('wilayah.pdf') }}" class="btn btn-primary mb-2 float-right">Download PDF</a>
+                <a href="{{ route('wilayah.export') }}" class="btn btn-info mb-2 float-right mr-2">Excel</a>
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>

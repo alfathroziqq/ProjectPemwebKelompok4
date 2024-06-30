@@ -209,6 +209,8 @@
                     </div>
                 </div>
                 <a href="{{ route('rumah.create') }}" class="btn btn-success mb-2">Tambah Rumah Baru</a>
+                <a href="{{ url('pdfrumahdownload') }}" class="btn btn-primary mb-2 float-right">Download PDF</a>
+                <a href="{{ url('showrumahexcel') }}" class="btn btn-info mb-2 float-right mr-2">Excel</a>
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>

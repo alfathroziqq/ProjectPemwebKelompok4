@@ -19,7 +19,7 @@ class Rumah extends Model
 
     public function kartuKeluarga()
     {
-        return $this->belongsTo(KartuKeluarga::class);
+        return $this->belongsTo(KartuKeluarga::class, 'kartu_keluarga_id');
     }
 
     public function riwayatPerubahanRumahs()

@@ -238,7 +238,9 @@
                     </div>
                 </div>
                 <a href="{{ route('kartu_keluarga.create') }}" class="btn btn-success mb-2">Tambah Kartu Keluarga Baru</a>
-                <a href="{{ route('kartu_keluarga.pdf') }}" class="btn btn-primary mb-2">Download PDF</a>
+                <a href="{{ url('pdfkkdownload') }}" class="btn btn-primary mb-2 float-right">Download PDF</a>
+                <a href="{{ url('showkkexcel') }}" class="btn btn-info mb-2 float-right mr-2">Excel</a>
+
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>

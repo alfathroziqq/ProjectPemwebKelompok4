@@ -205,6 +205,8 @@
                     </div>
                 </div>
                 <a href="{{ route('laporan_rumah.create') }}" class="btn btn-success mb-2">Tambah Laporan Rumah Baru</a>
+                <a href="{{ url('pdflaporandownload') }}" class="btn btn-primary mb-2 float-right">Download PDF</a>
+                <a href="{{ url('showlaporanexcel') }}" class="btn btn-info mb-2 float-right mr-2">Excel</a>
                 <table class="table table-striped table-hover table-bordered">
                     <thead>
                         <tr>

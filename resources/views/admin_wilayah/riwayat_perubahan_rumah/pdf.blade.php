@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daftar Kartu Keluarga</title>
+    <title>Daftar Riwayat Perubahan Rumah</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -25,7 +25,7 @@
         }
         th {
             background-color: #4CAF50;
-            color: black;
+            color: white;
             text-align: center;
         }
         td {
@@ -37,25 +37,23 @@
     </style>
 </head>
 <body>
-    <h2>Daftar Kartu Keluarga</h2>
+    <h2>Daftar Riwayat Perubahan Rumah</h2>
     <table>
         <thead>
             <tr>
                 <th>No</th>
-                <th>Nomor KK</th>
-                <th>Kepala Keluarga</th>
-                <th>Alamat</th>
-                <th>Provinsi</th>
+                <th>Rumah</th>
+                <th>Perubahan</th>
+                <th>Tanggal Perubahan</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($kartuKeluargas as $index => $kk)
+            @foreach ($riwayatPerubahanRumahs as $index => $riwayat)
                 <tr>
                     <td>{{ $index + 1 }}</td>
-                    <td>{{ $kk->nomor_kk }}</td>
-                    <td>{{ $kk->kepala_keluarga }}</td>
-                    <td>{{ $kk->alamat }}</td>
-                    <td>{{ $kk->wilayah->nama_provinsi }}</td>
+                    <td>{{ $riwayat->rumah->alamat ?? 'N/A' }}</td>
+                    <td>{{ $riwayat->perubahan }}</td>
+                    <td>{{ $riwayat->tanggal_perubahan }}</td>
                 </tr>
             @endforeach
         </tbody>

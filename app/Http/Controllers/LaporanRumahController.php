@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\LaporanRumah;
 use App\Models\Rumah;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\LaporanRumahExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class LaporanRumahController extends Controller
 {
@@ -75,5 +78,17 @@ class LaporanRumahController extends Controller
         $laporanRumah->delete();
 
         return redirect()->route('laporan_rumah.index')->with('success', 'Laporan Rumah berhasil dihapus.');
+    }
+
+    public function laporanpdf()
+    {
+        $laporanRumahs = LaporanRumah::with('rumah')->get();
+        $pdf = Pdf::loadView('admin_wilayah.laporan_rumah.pdf', compact('laporanRumahs'));
+        return $pdf->download('DaftarLaporan.pdf');
+    }
+
+    public function laporanexport()
+    {
+        return Excel::download(new LaporanRumahExport, 'DaftarLaporan.xlsx');
     }
 }

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Rumah;
 use App\Models\KartuKeluarga;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\RumahExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RumahController extends Controller
 {
@@ -78,5 +81,17 @@ class RumahController extends Controller
         $rumah->delete();
 
         return redirect()->route('rumah.index')->with('success', 'Rumah berhasil dihapus');
+    }
+
+    public function rumahpdf()
+    {
+        $rumahs = Rumah::with('kartuKeluarga')->get(); // Here, change kartu_keluarga to kartuKeluarga
+        $pdf = PDF::loadView('admin_wilayah.rumah.pdf', compact('rumahs'));
+        return $pdf->download('DaftarRumah.pdf');
+    }
+
+    public function rumahexport()
+    {
+        return Excel::download(new RumahExport, 'DaftarRumah.xlsx');
     }
 }

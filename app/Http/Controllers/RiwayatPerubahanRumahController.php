@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\RiwayatPerubahanRumah;
 use App\Models\Rumah;
+use Barryvdh\DomPDF\Facade\Pdf;
+use App\Exports\RiwayatPerubahanRumahExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RiwayatPerubahanRumahController extends Controller
 {
@@ -75,5 +78,17 @@ class RiwayatPerubahanRumahController extends Controller
         $riwayatPerubahanRumah->delete();
 
         return redirect()->route('riwayat_perubahan_rumah.index')->with('success', 'Riwayat Perubahan Rumah berhasil dihapus');
+    }
+
+    public function riwayatpdf()
+    {
+        $riwayatPerubahanRumahs = RiwayatPerubahanRumah::with('rumah')->get();
+        $pdf = Pdf::loadView('admin_wilayah.riwayat_perubahan_rumah.pdf', compact('riwayatPerubahanRumahs'));
+        return $pdf->download('DaftarRiwayat.pdf');
+    }
+
+    public function riwayatexport()
+    {
+        return Excel::download(new RiwayatPerubahanRumahExport, 'DaftarRiwayat.xlsx');
     }
 }

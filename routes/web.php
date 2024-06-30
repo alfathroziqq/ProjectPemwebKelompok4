@@ -34,11 +34,29 @@ Route::middleware(['auth'])->group(function () {
 
 // Jobdesc Admin Wilayah
 Route::middleware(['auth', 'role:admin_wilayah'])->group(function () {
+    // WILAYAH
     Route::resource('wilayah', WilayahController::class)->except(['show']);
-    Route::resource('kartu_keluarga', KartuKeluargaController::class);
-    Route::resource('rumah', RumahController::class);
-    Route::resource('riwayat_perubahan_rumah', RiwayatPerubahanRumahController::class);
-    Route::resource('laporan_rumah', LaporanRumahController::class);
     Route::get('wilayah/pdf', [WilayahController::class, 'pdf'])->name('wilayah.pdf');
-    Route::get('kartu_keluarga/pdf', [KartuKeluargaController::class, 'pdf'])->name('kartu_keluarga.pdf');
+    Route::get('wilayah/export', [WilayahController::class, 'export'])->name('wilayah.export');
+
+    // KK
+    Route::resource('kartu_keluarga', KartuKeluargaController::class);
+    Route::get('pdfkkdownload', [KartuKeluargaController::class, 'kkpdf']);
+    Route::get('showkkexcel', [KartuKeluargaController::class, 'kkexport']);
+
+    // RUMAH
+    Route::resource('rumah', RumahController::class);
+    Route::get('pdfrumahdownload', [RumahController::class, 'rumahpdf']);
+    Route::get('showrumahexcel', [RumahController::class, 'rumahexport']);
+
+    // RIWAYAT
+    Route::resource('riwayat_perubahan_rumah', RiwayatPerubahanRumahController::class);
+    Route::get('pdfriwayatdownload', [RiwayatPerubahanRumahController::class, 'riwayatpdf']);
+    Route::get('showriwayatexcel', [RiwayatPerubahanRumahController::class, 'riwayatexport']);
+
+    // LAPORAN
+    Route::resource('laporan_rumah', LaporanRumahController::class);
+    Route::get('pdflaporandownload', [LaporanRumahController::class, 'laporanpdf']);
+    Route::get('showlaporanexcel', [LaporanRumahController::class, 'laporanexport']);
 });
+
