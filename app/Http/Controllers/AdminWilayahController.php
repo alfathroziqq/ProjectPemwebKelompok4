@@ -9,6 +9,6 @@ class AdminWilayahController extends Controller
 {
     public function index()
     {
-        return view('admin_wilayah.master');
+        return view('admin_wilayah.home_admin_wilayah');
     }
 }
