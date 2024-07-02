@@ -8,6 +8,7 @@ use App\Http\Controllers\KartuKeluargaController;
 use App\Http\Controllers\LaporanRumahController;
 use App\Http\Controllers\RiwayatPerubahanRumahController;
 use App\Http\Controllers\RumahController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WilayahController;
 
 
@@ -42,6 +43,14 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin_wilayah', [AdminWilayahController::class, 'index'])->name('home_admin_wilayah')->middleware('role:admin_wilayah');
     // Logout
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});
+
+
+// Jobdesc Administrator
+Route::middleware(['auth', 'role:administrator'])->group(function () {
+    Route::resource('users', UserController::class);
+    Route::put('/users/change-password/{user}', [UserController::class, 'changePassword'])->name('users.change-password');
+
 });
 
 
