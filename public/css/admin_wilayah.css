@@ -225,6 +225,10 @@ table.table td a.view {
     color: #03A9F4;
 }
 
+table.table td a.change-password {
+    color: #03A9F4;
+}
+
 table.table td a.edit {
     color: #FFC107;
 }
