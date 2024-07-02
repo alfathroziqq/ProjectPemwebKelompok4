@@ -18,6 +18,12 @@
     <link rel="icon" href="/images/rumahmiskin.png" type="image/x-icon">
     <link rel="stylesheet" href="{{ URL('css/home.css') }}">
 
+    <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/map.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/worldLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/geodata/indonesiaLow.js"></script>
+    <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
+
     <style>
         .banner {
             background: url('{{ URL('images/perumahan.jpg') }}') no-repeat center center;
@@ -26,33 +32,13 @@
             padding-bottom: 18.5%;
             color: #fff;
         }
-    </style>
 
-    <script>
-        function initMap() {
-            var iframe = document.getElementById('map_canvas');
-            var iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
-
-            var locations = [{
-                lat: -7.5585,
-                lng: 110.8210,
-                title: 'Solo'
-            }, ];
-
-            for (var i = 0; i < locations.length; i++) {
-                var marker = new iframeDocument.google.maps.Marker({
-                    position: {
-                        lat: locations[i].lat,
-                        lng: locations[i].lng
-                    },
-                    map: iframeDocument.google.maps,
-                    title: locations[i].title
-                });
-            }
+        #chartdiv {
+            width: 100%;
+            height: 500px;
         }
-    </script>
+    </style>
     <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script>
-
 </head>
 
 <body>
@@ -192,11 +178,71 @@
             </p>
         </div>
 
-        <h3 class="text-center mb-4 mt-5">Peta Lokasi</h3>
-        <iframe id="map_canvas" src="https://maps.google.com/maps?q=-7.5585,110.8210&hl=eng&z=12&output=embed"
-            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-
+        <div class="map-container mt-5">
+            <h3 class="text-center mb-4">Peta Indonesia</h3>
+            <div id="chartdiv"></div>
+        </div>
     </div>
+
+    <script>
+        am5.ready(function() {
+            // Create root and chart
+            var root = am5.Root.new("chartdiv");
+            root.setThemes([am5themes_Animated.new(root)]);
+
+            // Create the map chart
+            var chart = root.container.children.push(am5map.MapChart.new(root, {
+                panX: "none",
+                panY: "none",
+                projection: am5map.geoMercator()
+            }));
+
+            // Filter out specific regions
+            var excludedRegions = ["Sarawak", "Sabah", "Selangor", "Brunei Darussalam", "Timor-Leste"];
+            var filteredGeoJSON = am5geodata_indonesiaLow.features.filter(feature =>
+                !excludedRegions.includes(feature.properties.name)
+            );
+
+            // Create polygon series
+            var polygonSeries = chart.series.push(am5map.MapPolygonSeries.new(root, {
+                geoJSON: { type: "FeatureCollection", features: filteredGeoJSON }
+            }));
+
+            // Data from rumahData variable
+            var rumahData = [{"wilayah":"Aceh","rumah_sehat":"1","rumah_tidak_sehat":"1","rumah_tidak_layak":"0"},{"wilayah":"Bali","rumah_sehat":"1","rumah_tidak_sehat":"0","rumah_tidak_layak":"1"},{"wilayah":"Banten","rumah_sehat":"2","rumah_tidak_sehat":"0","rumah_tidak_layak":"0"}];
+
+            // Create a lookup object for rumahData
+            var rumahLookup = {};
+            rumahData.forEach(function(item) {
+                rumahLookup[item.wilayah] = item;
+            });
+
+            // Configure series
+            polygonSeries.mapPolygons.template.setAll({
+                tooltipText: "{name}\nRumah Sehat: {rumah_sehat}\nRumah Tidak Sehat: {rumah_tidak_sehat}\nRumah Tidak Layak: {rumah_tidak_layak}",
+                interactive: true
+            });
+
+            polygonSeries.mapPolygons.template.states.create("hover", {
+                fill: am5.color(0x677935)
+            });
+
+            // Add rumah data to mapPolygons
+            polygonSeries.mapPolygons.template.events.on("datavalidated", function() {
+                polygonSeries.mapPolygons.each(function(polygon) {
+                    var data = rumahLookup[polygon.dataItem.dataContext.name];
+                    if (data) {
+                        polygon.dataItem.set("rumah_sehat", data.rumah_sehat);
+                        polygon.dataItem.set("rumah_tidak_sehat", data.rumah_tidak_sehat);
+                        polygon.dataItem.set("rumah_tidak_layak", data.rumah_tidak_layak);
+                    }
+                });
+            });
+
+            // Add zoom control
+            chart.set("zoomControl", am5map.ZoomControl.new(root, {}));
+        });
+    </script>
 
     <!-- Footer -->
     <footer class="footer" id="cp">

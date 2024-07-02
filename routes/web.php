@@ -10,13 +10,25 @@ use App\Http\Controllers\RiwayatPerubahanRumahController;
 use App\Http\Controllers\RumahController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WilayahController;
-
+use Illuminate\Support\Facades\DB;
 
 // Halaman Home View
 Route::get('/', function () {
-    return view('home_view');
-})->name('home');
+    $rumahData = DB::table('rumahs')
+        ->join('kartu_keluargas', 'rumahs.kartu_keluarga_id', '=', 'kartu_keluargas.id')
+        ->join('wilayahs', 'kartu_keluargas.wilayah_id', '=', 'wilayahs.id')
+        ->selectRaw('
+            wilayahs.nama_provinsi as wilayah,
+            SUM(spesifikasi_rumah = "rumah sehat") as rumah_sehat,
+            SUM(spesifikasi_rumah = "rumah tidak sehat") as rumah_tidak_sehat,
+            SUM(spesifikasi_rumah = "rumah tidak layak") as rumah_tidak_layak
+        ')
+        ->groupBy('wilayahs.nama_provinsi')
+        ->get()
+        ->toJson();
 
+    return view('home_view', compact('rumahData'));
+})->name('home');
 
 // Halaman View
 Route::get('wilayah_view', [WilayahController::class, 'index'])->name('wilayah_view');
