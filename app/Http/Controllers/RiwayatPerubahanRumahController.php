@@ -21,7 +21,12 @@ class RiwayatPerubahanRumahController extends Controller
                     $query->where('alamat', 'LIKE', '%' . $search . '%');
                 });
             })
+
             ->paginate(10);
+
+            if ($request->url() === url('riwayat_view')) {
+                return view('riwayat_view', compact('riwayatPerubahanRumahs'));
+            }
 
         return view('admin_wilayah.riwayat_perubahan_rumah.index', compact('riwayatPerubahanRumahs'));
     }

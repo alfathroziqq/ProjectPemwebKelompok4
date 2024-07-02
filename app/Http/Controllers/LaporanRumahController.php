@@ -23,6 +23,10 @@ class LaporanRumahController extends Controller
             })
             ->paginate(10);
 
+            if ($request->url() === url('laporan_view')) {
+                return view('laporan_view', compact('laporanRumahs'));
+            }
+
         return view('admin_wilayah.laporan_rumah.index', compact('laporanRumahs'));
     }
 

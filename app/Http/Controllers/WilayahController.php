@@ -21,6 +21,10 @@ class WilayahController extends Controller
 
         $wilayahs = $query->paginate(10);
 
+        if ($request->url() === url('wilayah_view')) {
+            return view('wilayah_view', compact('wilayahs'));
+        }
+
         return view('admin_wilayah.wilayah.index', compact('wilayahs'));
     }
 

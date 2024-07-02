@@ -15,6 +15,13 @@ Route::get('/', function () {
     return view('home_view');
 })->name('home');
 
+// Halaman View
+Route::get('wilayah_view', [WilayahController::class, 'index'])->name('wilayah_view');
+Route::get('kk_view', [KartuKeluargaController::class, 'index'])->name('kk_view');
+Route::get('rumah_view', [RumahController::class, 'index'])->name('rumah_view');
+Route::get('riwayat_view', [RiwayatPerubahanRumahController::class, 'index'])->name('riwayat_view');
+Route::get('laporan_view', [LaporanRumahController::class, 'index'])->name('laporan_view');
+
 // Halaman Login
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login.form');
 Route::post('/login', [AuthController::class, 'login'])->name('login');

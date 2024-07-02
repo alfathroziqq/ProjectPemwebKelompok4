@@ -22,6 +22,10 @@ class RumahController extends Controller
         })
             ->paginate(10);
 
+        if ($request->url() === url('rumah_view')) {
+            return view('rumah_view', compact('rumahs'));
+        }
+
         return view('admin_wilayah.rumah.index', compact('rumahs'));
     }
 

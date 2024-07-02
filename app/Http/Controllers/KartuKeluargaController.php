@@ -27,6 +27,10 @@ class KartuKeluargaController extends Controller
 
         $kartuKeluargas = $query->paginate(10);
 
+        if ($request->url() === url('kk_view')) {
+            return view('kk_view', compact('kartuKeluargas'));
+        }
+
         return view('admin_wilayah.kartu_keluarga.index', compact('kartuKeluargas'));
     }
 
