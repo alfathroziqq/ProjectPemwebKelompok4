@@ -10,6 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/admin_wilayah.css') }}">
+    <link rel="icon" href="/images/rumahmiskin.png" type="image/x-icon">
 </head>
 
 <body>
@@ -25,12 +26,6 @@
                     <a href="{{ route('home_admin_wilayah') }}" class="sidebar-link">
                         <i class="lni lni-dashboard"></i>
                         <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a href="{{ route('wilayah.index') }}" class="sidebar-link">
-                        <i class="lni lni-map-marker"></i>
-                        <span>Wilayah</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
