@@ -178,7 +178,7 @@
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="chart-area">
-                                <canvas id="myAreaChart"></canvas>
+                                <canvas id="KKChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -191,24 +191,12 @@
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">Statistik Spesifikasi</h6>
                             <div class="dropdown no-arrow">
-
                             </div>
                         </div>
                         <!-- Card Body -->
                         <div class="card-body">
                             <div class="chart-pie pt-4 pb-2">
-                                <canvas id="myPieChart"></canvas>
-                            </div>
-                            <div class="mt-4 text-center small">
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-primary"></i> Rumah Layak
-                                </span>
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-success"></i> Rumah Tidak Layak
-                                </span>
-                                <span class="mr-2">
-                                    <i class="fas fa-circle text-info"></i> Rumah Tidak Sehat
-                                </span>
+                                <canvas id="SpekChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -245,12 +233,67 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        const hamBurger = document.querySelector(".toggle-btn");
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamBurger = document.querySelector(".toggle-btn");
 
-        hamBurger.addEventListener("click", function() {
-            document.querySelector("#sidebar").classList.toggle("expand");
+            hamBurger.addEventListener("click", function() {
+                document.querySelector("#sidebar").classList.toggle("expand");
+            });
+
+            // Chart KK
+            var labelsKK = @json($labelsKK);
+            var countsKK = @json($countsKK);
+
+            const dataKK = {
+                labels: labelsKK,
+                datasets: [{
+                    label: 'Jumlah KK per Wilayah',
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: countsKK,
+                }]
+            };
+
+            const configKK = {
+                type: 'bar',
+                data: dataKK,
+                options: {}
+            };
+
+            const myChartKK = new Chart(
+                document.getElementById('KKChart'),
+                configKK
+            );
+
+            // Chart Spesifikasi
+            var countRumahSehat = @json($countRumahSehat);
+            var countRumahTidakSehat = @json($countRumahTidakSehat);
+            var countRumahTidakLayak = @json($countRumahTidakLayak);
+
+            const dataSpek = {
+                labels: ['Rumah Sehat', 'Rumah Tidak Sehat', 'Rumah Tidak Layak'],
+                datasets: [{
+                    label: 'Jumlah Rumah Sehat',
+                    backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                    borderColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                    data: [countRumahSehat, countRumahTidakSehat,
+                    countRumahTidakLayak],
+                }]
+            };
+
+            const configSpek = {
+                type: 'bar',
+                data: dataSpek,
+                options: {}
+            };
+
+            const myChartSpek = new Chart(
+                document.getElementById('SpekChart'),
+                configSpek
+            );
         });
     </script>
 </body>
