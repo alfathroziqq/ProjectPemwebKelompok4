@@ -12,11 +12,16 @@ use App\Http\Controllers\RiwayatPerubahanRumahController;
 use App\Http\Controllers\RumahController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WilayahController;
+use App\Models\Rumah;
 use Illuminate\Support\Facades\DB;
 
 // Halaman Home View
 Route::get('/', function () {
-    return view('home_view');
+    $countRumahSehat = Rumah::where('spesifikasi_rumah', 'rumah sehat')->count();
+    $countRumahTidakSehat = Rumah::where('spesifikasi_rumah', 'rumah tidak sehat')->count();
+    $countRumahTidakLayak = Rumah::where('spesifikasi_rumah', 'rumah tidak layak')->count();
+
+    return view('home_view', compact('countRumahSehat', 'countRumahTidakSehat', 'countRumahTidakLayak'));
 })->name('home');
 
 

@@ -52,6 +52,9 @@
                         <a class="nav-link" href="#informasi">Informasi</a>
                     </li>
                     <li class="nav-item mx-2">
+                        <a class="nav-link" href="#spesifikasi">Statistik Spesifikasi</a>
+                    </li>
+                    <li class="nav-item mx-2">
                         <a class="nav-link" href="#pengumuman">Pengumuman</a>
                     </li>
                     <li class="nav-item mx-2">
@@ -136,6 +139,18 @@
                             <h5>Peta Spesifikasi Perumahan</h5>
                         </div>
                         <a href="{{ url('peta_view') }}" class="btn btn-main-2 btn-round-full mt-3">Klik Disini</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <h3 class="text-center mb-4 mt-5" id="spesifikasi">Statistik Spesifikasi</h3>
+        <div class="container d-flex justify-content-center">
+            <div class="card shadow mb-3 mt-3">
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="chart-pie pt-4 pb-2">
+                        <canvas id="SpekChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -288,6 +303,37 @@
             </div>
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var countRumahSehat = @json($countRumahSehat);
+            var countRumahTidakSehat = @json($countRumahTidakSehat);
+            var countRumahTidakLayak = @json($countRumahTidakLayak);
+
+            const dataSpek = {
+                labels: ['Rumah Sehat', 'Rumah Tidak Sehat', 'Rumah Tidak Layak'],
+                datasets: [{
+                    label: 'Jumlah Rumah Sehat',
+                    backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                    borderColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                    data: [countRumahSehat, countRumahTidakSehat, countRumahTidakLayak],
+                }]
+            };
+
+            const configSpek = {
+                type: 'bar',
+                data: dataSpek,
+                options: {}
+            };
+
+            const myChartSpek = new Chart(
+                document.getElementById('SpekChart'),
+                configSpek
+            );
+        });
+    </script>
 </body>
 
 </html>
