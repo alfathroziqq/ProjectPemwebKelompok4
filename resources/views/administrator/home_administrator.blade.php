@@ -85,6 +85,24 @@
                     </div>
                 </div>
 
+                <div class="container d-flex justify-content-center">
+                    <div class="card shadow mb-4">
+                        <!-- Spesifikasi Rumah -->
+                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                            <h6 class="m-0 font-weight-bold text-primary">Statistik User</h6>
+                            <div class="dropdown no-arrow">
+                            </div>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="card-body">
+                            <div class="chart-pie pt-4 pb-2">
+                                <canvas id="UserChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Deskripsi Dashboard -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
@@ -107,12 +125,40 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <script>
         const hamBurger = document.querySelector(".toggle-btn");
 
         hamBurger.addEventListener("click", function() {
             document.querySelector("#sidebar").classList.toggle("expand");
         });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            var countAdministrator = @json($countAdministrator);
+            var countAdminWilayah = @json($countAdminWilayah);
+
+            const dataUser = {
+                labels: ['Administrator', 'Admin Wilayah'],
+                datasets: [{
+                    label: 'Jumlah User',
+                    backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                    borderColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
+                    data: [countAdministrator, countAdminWilayah],
+                }]
+            };
+
+            const configUser = {
+                type: 'bar',
+                data: dataUser,
+                options: {}
+            };
+
+            const myChartUser = new Chart(
+                document.getElementById('UserChart'),
+                configUser
+            );
+        })
     </script>
 </body>
 
