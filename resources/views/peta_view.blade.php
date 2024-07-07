@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Daftar Kartu Keluarga</title>
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -14,20 +15,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
+
     <link rel="icon" href="/images/rumahmiskin.png" type="image/x-icon">
     <link rel="stylesheet" href="{{ URL('css/home.css') }}">
 
-    <style>
-        .banner {
-            background: url('{{ URL('images/perumahan.jpg') }}') no-repeat center center;
-            background-size: cover;
-            padding-top: 20%;
-            padding-bottom: 18.5%;
-            color: #fff;
-        }
-    </style>
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
 </head>
+
+<style>
+    body {
+        margin-top: 7%;
+    }
+
+    #map {
+        height: 80vh;
+        width: 100%;
+    }
+</style>
 
 <body>
 
@@ -46,16 +51,16 @@
             <div class="collapse navbar-collapse text-right" id="navbarText">
                 <ul class="navbar-nav nav-underline mx-auto">
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#">Dashboard</a>
+                        <a class="nav-link" href="{{ route('home') }}">Dashboard</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#informasi">Informasi</a>
+                        <a class="nav-link" href="{{ route('home') }}">Informasi</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#pengumuman">Pengumuman</a>
+                        <a class="nav-link" href="{{ route('home') }}">Pengumuman</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#cp">Kantor</a>
+                        <a class="nav-link" href="{{ route('home') }}">Kontak</a>
                     </li>
                 </ul>
                 <div>
@@ -66,126 +71,35 @@
         </div>
     </nav>
 
-    <div class="container-fluid banner">
-        <div class="container text-center">
-            <h4 class="display-2">Selamat datang !</h4>
-            <h4 class="display-3">Portal Layanan Perumahan Miskin</h4>
-        </div>
-        <div class="card-container" id="informasi">
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <i class="fas fa-globe fa-2x text-danger"></i>
-                    </div>
-                    <h5 class="card-title">Wilayah</h5>
-                    <p class="card-text">Tampilan daftar wilayah secara lengkap beserta jumlah kartu keluarga.</p>
-                    <a href="{{ url('wilayah_view') }}" class="btn btn-outline-danger">Klik Disini</a>
-                </div>
-            </div>
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <i class="fas fa-file-alt fa-2x text-danger"></i>
-                    </div>
-                    <h5 class="card-title">Kartu Keluarga</h5>
-                    <p class="card-text">Tampilan daftar kartu keluarga secara lengkap dan terperinci.</p>
-                    <a href="{{ url('kk_view') }}" class="btn btn-outline-danger">Klik Disini</a>
-                </div>
-            </div>
-            <div class="card text-center">
-                <div class="card-body">
-                    <div class="mb-3">
-                        <i class="fas fa-home fa-2x text-danger"></i>
-                    </div>
-                    <h5 class="card-title">Rumah</h5>
-                    <p class="card-text">Tampilan daftar rumah dari setiap kartu keluarga yang memiliki rumah</p>
-                    <a href="{{ url('rumah_view') }}" class="btn btn-outline-danger">Klik Disini</a>
-                </div>
-            </div>
-        </div>
+    <div class="container mt-5">
+        <div id="map"></div>
     </div>
 
-    <div class="content container">
-        <div class="content container">
-            <h3 class="text-center mb-4 h3-below-cards">Informasi Lainnya</h3>
-            <div class="row d-flex justify-content-center align-items-center">
-                <div class="d-flex flex-grow-1 justify-content-center">
-                    <div class="shadow more-info-item more-info-border-1 p-4 me-3">
-                        <div class="d-flex align-items-center">
-                            <div class="mb-3">
-                                <i class="fas fa-file-alt fa-2x text-danger"></i>
-                            </div>
-                            <h5>Riwayat Perubahan Rumah</h5>
-                        </div>
-                        <a href="{{ url('riwayat_view') }}" class="btn btn-main-2 btn-round-full mt-3">Klik Disini</a>
-                    </div>
-                    <div class="shadow more-info-item more-info-border-2 p-4 me-3">
-                        <div class="d-flex align-items-center">
-                            <div class="mb-3">
-                                <i class="fas fa-file-alt fa-2x text-danger"></i>
-                            </div>
-                            <h5>Laporan / Info Perumahan</h5>
-                        </div>
-                        <a href="{{ url('laporan_view') }}" class="btn btn-main-2 btn-round-full mt-3">Klik Disini</a>
-                    </div>
-                    <div class="shadow more-info-item more-info-border-2 p-4">
-                        <div class="d-flex align-items-center">
-                            <div class="mb-3">
-                                <i class="fas fa-file-alt fa-2x text-danger"></i>
-                            </div>
-                            <h5>Peta Spesifikasi Perumahan</h5>
-                        </div>
-                        <a href="{{ url('peta_view') }}" class="btn btn-main-2 btn-round-full mt-3">Klik Disini</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
 
-        <h3 class="text-center mb-4 mt-5" id="pengumuman">Pengumuman</h3>
-        <p class="text-isi">
-            Website
-            <span class="fw-bold">Portal Layanan Perumahan Miskin</span> ini merupakan website yang dirancang untuk
-            memberikan berbagai layanan dan informasi terkait perumahan bagi masyarakat kurang mampu. Melalui portal
-            ini, pengguna dapat mengakses berbagai program bantuan, mendaftar untuk subsidi perumahan, dan mendapatkan
-            informasi terkini mengenai inisiatif pemerintah di bidang perumahan miskin. Portal ini juga menyediakan
-            berbagai sumber daya dan panduan untuk membantu masyarakat dalam proses pengajuan bantuan dan memperoleh
-            tempat tinggal yang layak. Dengan demikian, website ini menjadi alat yang penting dalam upaya meningkatkan
-            kualitas hidup masyarakat miskin melalui akses yang lebih mudah dan transparan terhadap layanan perumahan.
-        </p>
+    <script>
+        var map = L.map('map').setView([-2.5, 120], 5);
 
-        <h3 class="text-center mb-4 mt-5" id="pengumuman">Konten Menarik</h3>
-        <div class="container-video">
-            <!-- Video YouTube -->
-            <div class="video-container">
-                <iframe id="video"
-                    src="https://www.youtube.com/embed/kc5qIof7bPg?autoplay=1&mute=1&loop=1&playlist=kc5qIof7bPg"
-                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen style="pointer-events: none;">
-                </iframe>
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
 
-                <div class="video-overlay"></div>
-            </div>
-            <p class="text-isi-video">
-                Website ini digunakan untuk melihat data-data keterangan perumahan miskin yang ada di Indonesia.
-                Platform ini menyediakan informasi rinci tentang kondisi perumahan di berbagai daerah, termasuk tingkat
-                kemiskinan, akses ke fasilitas dasar, dan kondisi fisik rumah. Data yang disajikan dapat digunakan oleh
-                pemerintah, peneliti, dan organisasi non-pemerintah untuk merencanakan program peningkatan kesejahteraan
-                dan perbaikan perumahan. Melalui analisis data yang komprehensif, website ini bertujuan untuk mendukung
-                upaya pengentasan kemiskinan dan meningkatkan kualitas hidup masyarakat yang tinggal di perumahan miskin
-                di seluruh Indonesia. Dengan antarmuka yang user-friendly dan fitur pencarian yang canggih, pengguna
-                dapat dengan mudah mengakses data yang mereka butuhkan untuk membuat keputusan yang lebih baik dan
-                berbasis data.
-            </p>
-        </div>
+        var monitoring = @json($monitoring);
 
-        <h3 class="text-center mb-4 mt-5">Lokasi Kantor</h3>
-        <iframe id="map_canvas" src="https://maps.google.com/maps?q=-7.5585,110.8210&hl=eng&z=12&output=embed"
-            width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-    </div>
+        monitoring.forEach(function(data) {
+            var markerIcon = L.icon({
+                iconUrl: 'https://maps.google.com/mapfiles/ms/micons/red-dot.png',
+                iconSize: [32, 32],
+                iconAnchor: [16, 32],
+                popupAnchor: [0, -32]
+            });
 
-    <!-- Footer -->
-    <footer class="footer" id="cp">
-        <p>&copy; 2024 Portal Perumahan. Project Akhir Pemrograman Web Kelompok 4</p>
-    </footer>
+            L.marker([data.latitude, data.longitude], { icon: markerIcon })
+                .addTo(map)
+                .bindPopup('<b>' + data.provinsi + '</b><br>' + data.deskripsi);
+        });
+    </script>
 
     <!-- Modal Login -->
     <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">

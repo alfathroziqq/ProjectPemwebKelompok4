@@ -12,6 +12,11 @@ class PetaController extends Controller
         $page_title = "Data Peta";
         $monitoring = Monitoring::all();
 
+
+        if ($request->url() === url('peta_view')) {
+            return view('peta_view', compact('monitoring'));
+        }
+
         return view('admin_wilayah.peta.index', compact('page_title', 'monitoring'));
     }
 }

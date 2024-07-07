@@ -26,6 +26,7 @@ Route::get('kk_view', [KartuKeluargaController::class, 'index'])->name('kk_view'
 Route::get('rumah_view', [RumahController::class, 'index'])->name('rumah_view');
 Route::get('riwayat_view', [RiwayatPerubahanRumahController::class, 'index'])->name('riwayat_view');
 Route::get('laporan_view', [LaporanRumahController::class, 'index'])->name('laporan_view');
+Route::get('peta_view', [PetaController::class, 'index'])->name('peta_view');
 
 
 // Halaman Login
