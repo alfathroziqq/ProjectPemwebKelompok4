@@ -21,6 +21,7 @@
             <div class="card-header">
                 <h2>Edit Laporan Rumah</h2>
             </div>
+
             <div class="card-body">
                 @if ($errors->any())
                     <div class="alert alert-danger">
@@ -31,6 +32,7 @@
                         </ul>
                     </div>
                 @endif
+
                 <form action="{{ route('laporan_rumah.update', $laporanRumah->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -55,6 +57,7 @@
                     <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                     <a href="{{ route('laporan_rumah.index') }}" class="btn btn-secondary">Kembali</a>
                 </form>
+                
             </div>
         </div>
     </div>

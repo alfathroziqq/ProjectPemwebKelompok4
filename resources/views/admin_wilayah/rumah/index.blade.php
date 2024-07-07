@@ -80,7 +80,7 @@
                             <th>No</th>
                             <th>Nomor KK</th>
                             <th>Alamat</th>
-                            <th>Luas Rumah</th>
+                            <th>Luas Rumah (m²)</th>
                             <th>Jumlah Kamar</th>
                             <th>Spesifikasi Rumah</th>
                             <th>Aksi</th>

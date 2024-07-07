@@ -27,6 +27,7 @@
 </style>
 
 <body>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
         <div class="container">
@@ -74,6 +75,7 @@
                         <th>Tanggal Perubahan</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @php
                         $i = ($riwayatPerubahanRumahs->currentPage() - 1) * $riwayatPerubahanRumahs->perPage() + 1;
@@ -90,6 +92,7 @@
                         @endphp
                     @endforeach
                 </tbody>
+
             </table>
         </div>
 

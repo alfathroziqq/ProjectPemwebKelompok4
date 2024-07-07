@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="{{ asset('css/admin_wilayah.css') }}">
-        
+
     </head>
 
     <body>
@@ -20,6 +20,7 @@
                 <div class="card-header">
                     <h2>Tambah Rumah Baru</h2>
                 </div>
+                
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -30,6 +31,7 @@
                             </ul>
                         </div>
                     @endif
+
                     <form action="{{ route('rumah.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
@@ -40,13 +42,14 @@
                                 @endforeach
                             </select>
                         </div>
+
                         <div class="form-group">
                             <label for="alamat">Alamat :</label>
                             <input type="text" class="form-control" id="alamat" name="alamat"
                                 value="{{ old('alamat') }}" placeholder="Masukkan Alamat">
                         </div>
                         <div class="form-group">
-                            <label for="luas_rumah">Luas Rumah :</label>
+                            <label for="luas_rumah">Luas Rumah (m²) :</label>
                             <input type="number" class="form-control" id="luas_rumah" name="luas_rumah"
                                 value="{{ old('luas_rumah') }}" placeholder="Masukkan Luas Rumah">
                         </div>
@@ -63,8 +66,10 @@
                                 <option value="rumah tidak layak" {{ old('spesifikasi_rumah') == 'rumah tidak layak' ? 'selected' : '' }}>Rumah Tidak Layak</option>
                             </select>
                         </div>
+
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="{{ route('rumah.index') }}" class="btn btn-secondary">Kembali</a>
+
                     </form>
                 </div>
             </div>

@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="{{ asset('css/admin_wilayah.css') }}">
-
     </head>
 
     <body>
@@ -22,6 +21,7 @@
                 <div class="card-header">
                     <h2>Tambah Wilayah Baru</h2>
                 </div>
+
                 <div class="card-body">
                     @if ($errors->any())
                         <div class="alert alert-danger">
@@ -32,6 +32,7 @@
                             </ul>
                         </div>
                     @endif
+
                     <form action="{{ route('wilayah.store') }}" method="POST">
                         @csrf
                         <div class="form-group">
@@ -46,6 +47,7 @@
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="{{ route('wilayah.index') }}" class="btn btn-secondary">Kembali</a>
                     </form>
+                    
                 </div>
             </div>
         </div>

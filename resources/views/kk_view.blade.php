@@ -27,6 +27,7 @@
 </style>
 
 <body>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
         <div class="container">
@@ -75,6 +76,7 @@
                         <th>Provinsi</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @php
                         $i = ($kartuKeluargas->currentPage() - 1) * $kartuKeluargas->perPage() + 1;
@@ -92,7 +94,9 @@
                         @endphp
                     @endforeach
                 </tbody>
+
             </table>
+
         </div>
 
         <div class="clearfix">
@@ -121,6 +125,7 @@
                 </li>
             </ul>
         </div>
+
     </div>
 
     <!-- Modal Login -->

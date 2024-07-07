@@ -84,6 +84,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @php
                             $i = ($Monitorings->currentPage() - 1) * $Monitorings->perPage() + 1;
@@ -122,7 +123,9 @@
                             @endphp
                         @endforeach
                     </tbody>
+
                 </table>
+
                 <div class="clearfix">
                     <div class="hint-text">Menampilkan <b>{{ $Monitorings->count() }}</b> dari
                         <b>{{ $Monitorings->total() }}</b> entri
@@ -147,6 +150,7 @@
                         </li>
                     </ul>
                 </div>
+                
             </div>
         </div>
 

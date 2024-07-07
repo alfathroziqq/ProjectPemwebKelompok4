@@ -105,6 +105,7 @@
                         </div>
                     </div>
                 </div>
+
                 <a href="{{ route('kartu_keluarga.create') }}" class="btn btn-success mb-2">Tambah Kartu Keluarga Baru</a>
                 <a href="{{ url('pdfkkdownload') }}" class="btn btn-primary mb-2 float-right">Download PDF</a>
                 <a href="{{ url('showkkexcel') }}" class="btn btn-info mb-2 float-right mr-2">Excel</a>
@@ -120,6 +121,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @php
                             $i = ($kartuKeluargas->currentPage() - 1) * $kartuKeluargas->perPage() + 1;
@@ -156,7 +158,9 @@
                             @endphp
                         @endforeach
                     </tbody>
+
                 </table>
+
                 <div class="clearfix">
                     <div class="hint-text">Menampilkan <b>{{ $kartuKeluargas->count() }}</b> dari
                         <b>{{ $kartuKeluargas->total() }}</b> entri
@@ -183,6 +187,7 @@
                         </li>
                     </ul>
                 </div>
+                
             </div>
         </div>
 

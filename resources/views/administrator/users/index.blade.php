@@ -46,6 +46,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @php
                             $i = 1; // Mulai dari 1 untuk setiap halaman
@@ -77,7 +78,9 @@
                             </tr>
                         @endforeach
                     </tbody>
+
                 </table>
+
                 <div class="clearfix">
                     <div class="hint-text">Menampilkan <b>{{ $users->count() }}</b> dari
                         <b>{{ $users->total() }}</b>
@@ -102,6 +105,7 @@
                         </li>
                     </ul>
                 </div>
+                
             </div>
         </div>
 

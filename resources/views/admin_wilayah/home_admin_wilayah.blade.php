@@ -84,14 +84,16 @@
         </aside>
 
         <div class="main p-3 m-4">
-            <!-- Page Heading -->
+
+            <!-- Header -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h2 class="fw-bold" style="color: black;">Dashboard</h2>
             </div>
-            <!-- Content Row -->
+
+            <!-- Baris Konten -->
             <div class="row">
 
-                <!-- Earnings (Monthly) Card Example -->
+                <!-- Jumlah Wilayah -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
                         <div class="card-body">
@@ -109,7 +111,7 @@
                     </div>
                 </div>
 
-                <!-- Earnings (Monthly) Card Example -->
+                <!-- Jumlah Kartu Keluarga -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
                         <div class="card-body">
@@ -127,7 +129,7 @@
                     </div>
                 </div>
 
-                <!-- Pending Requests Card Example -->
+                <!-- Jumlah Rumah -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-warning shadow h-100 py-2">
                         <div class="card-body">
@@ -144,7 +146,8 @@
                         </div>
                     </div>
                 </div>
-                <!-- Pending Requests Card Example -->
+
+                <!-- Jumlah Laporan -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-warning shadow h-100 py-2">
                         <div class="card-body">
@@ -162,20 +165,21 @@
                     </div>
                 </div>
             </div>
-            <!-- Content Row -->
 
             <div class="row">
 
-                <!-- Area Chart -->
+                <!-- Grafik -->
                 <div class="col-xl-8 col-lg-7">
                     <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
+
+                        <!-- Grafik statistik provinsi -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">Statistik Provinsi</h6>
                             <div class="dropdown no-arrow">
                             </div>
                         </div>
-                        <!-- Card Body -->
+
+                        <!-- Body -->
                         <div class="card-body">
                             <div class="chart-area">
                                 <canvas id="KKChart"></canvas>
@@ -184,16 +188,18 @@
                     </div>
                 </div>
 
-                <!-- Pie Chart -->
+                <!-- Grafik Pie -->
                 <div class="col-xl-4 col-lg-5">
                     <div class="card shadow mb-4">
-                        <!-- Card Header - Dropdown -->
+
+                        <!-- Spesifikasi Rumah -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">Statistik Spesifikasi</h6>
                             <div class="dropdown no-arrow">
                             </div>
                         </div>
-                        <!-- Card Body -->
+
+                        <!-- Body -->
                         <div class="card-body">
                             <div class="chart-pie pt-4 pb-2">
                                 <canvas id="SpekChart"></canvas>
@@ -201,29 +207,18 @@
                         </div>
                     </div>
                 </div>
-                <!-- Illustrations -->
-                <div class="card shadow mb-4">
-                    <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                    </div>
-                    <div class="card-body">
-                        <p>Add some quality, svg illustrations to your project courtesy of, a
-                            constantly updated collection of beautiful svg images that you can use
-                            completely free and without attribution!</p>
-                    </div>
-                </div>
 
-                <!-- Approach -->
+                <!-- Deskripsi Dashboard -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Deskripsi Dashboard Admin Wilayah</h6>
                     </div>
                     <div class="card-body">
-                        <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                            CSS bloat and poor page performance. Custom CSS classes are used to create
-                            custom components and custom utility classes.</p>
-                        <p class="mb-0">Before working with this theme, you should become familiar with the
-                            Bootstrap framework, especially the utility classes.</p>
+                        <p>Dashboard Admin Wilayah adalah antarmuka pengguna yang dirancang untuk memudahkan admin dalam
+                            mengelola dan memantau data wilayah. Dashboard ini menyediakan berbagai fitur untuk
+                            mengakses informasi penting tentang wilayah, termasuk data geografis, populasi,
+                            infrastruktur, dan statistik lainnya. Berikut adalah deskripsi rinci tentang fitur-fitur
+                            yang tersedia di dalam dashboard ini.</p>
                     </div>
                 </div>
             </div>
@@ -280,7 +275,8 @@
                     backgroundColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
                     borderColor: ['rgb(255, 99, 132)', 'rgb(54, 162, 235)', 'rgb(255, 205, 86)'],
                     data: [countRumahSehat, countRumahTidakSehat,
-                    countRumahTidakLayak],
+                        countRumahTidakLayak
+                    ],
                 }]
             };
 

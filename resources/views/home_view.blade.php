@@ -25,7 +25,6 @@
             padding-bottom: 18.5%;
             color: #fff;
         }
-
     </style>
 </head>
 

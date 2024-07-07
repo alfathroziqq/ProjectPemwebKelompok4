@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Daftar Kartu Keluarga</title>
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -27,6 +26,7 @@
 </style>
 
 <body>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
         <div class="container">
@@ -76,6 +76,7 @@
                         <th>Spesifikasi Rumah</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @php
                         $i = ($rumahs->currentPage() - 1) * $rumahs->perPage() + 1;
@@ -94,9 +95,10 @@
                         @endphp
                     @endforeach
                 </tbody>
+
             </table>
         </div>
-        
+
         <div class="clearfix">
             <div class="hint-text">Menampilkan <b>{{ $rumahs->count() }}</b> dari
                 <b>{{ $rumahs->total() }}</b> entri
@@ -121,6 +123,7 @@
                 </li>
             </ul>
         </div>
+
     </div>
 
     <!-- Modal Login -->

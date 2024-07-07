@@ -27,6 +27,7 @@
 </style>
 
 <body>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
         <div class="container">
@@ -73,6 +74,7 @@
                         <th>Jumlah Kartu Keluarga</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @foreach ($wilayahs as $wilayah)
                         <tr>
@@ -82,6 +84,7 @@
                         </tr>
                     @endforeach
                 </tbody>
+
             </table>
         </div>
 
@@ -109,6 +112,7 @@
                 </li>
             </ul>
         </div>
+
     </div>
 </body>
 

@@ -47,6 +47,8 @@
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h2 class="fw-bold" style="color: black;">Dashboard</h2>
             </div>
+
+            <!-- Jumlah Administrator -->
             <div class="row">
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-primary shadow h-100 py-2">
@@ -65,7 +67,7 @@
                     </div>
                 </div>
 
-                <!-- Earnings (Monthly) Card Example -->
+                <!-- Jumlah Admin Wilayah -->
                 <div class="col-xl-3 col-md-6 mb-4">
                     <div class="card border-left-success shadow h-100 py-2">
                         <div class="card-body">
@@ -82,10 +84,24 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- Deskripsi Dashboard -->
+                <div class="card shadow mb-4">
+                    <div class="card-header py-3">
+                        <h6 class="m-0 font-weight-bold text-primary">Deskripsi Dashboard Administrator</h6>
+                    </div>
+                    <div class="card-body">
+                        <p>Dashboard Administrator ini dirancang khusus untuk memudahkan pengelolaan pengguna dalam
+                            sebuah aplikasi atau sistem. Fitur-fitur yang tersedia memungkinkan Administrator untuk
+                            melakukan berbagai tugas terkait dengan pengguna secara efisien dan terorganisir. Contohnya
+                            adalah menambah user aplikasi, mengedit username dan password user, serta menghapus user.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">

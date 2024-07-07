@@ -9,6 +9,7 @@
 <body>
     <div class="container">
         <h1>Edit User</h1>
+
         <form action="{{ route('users.update', $user) }}" method="POST">
             @csrf
             @method('PUT')
@@ -29,6 +30,7 @@
             </div>
             <button type="submit" class="btn btn-primary">Update</button>
         </form>
+        
     </div>
 </body>
 </html>

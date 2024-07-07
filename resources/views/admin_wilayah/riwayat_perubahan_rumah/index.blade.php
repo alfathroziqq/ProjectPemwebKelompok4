@@ -80,6 +80,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @php
                             $i = ($riwayatPerubahanRumahs->currentPage() - 1) * $riwayatPerubahanRumahs->perPage() + 1;
@@ -117,7 +118,9 @@
                             @endphp
                         @endforeach
                     </tbody>
+
                 </table>
+                
                 <div class="clearfix">
                     <div class="hint-text">Menampilkan <b>{{ $riwayatPerubahanRumahs->count() }}</b> dari
                         <b>{{ $riwayatPerubahanRumahs->total() }}</b> entri

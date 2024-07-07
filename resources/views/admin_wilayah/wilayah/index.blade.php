@@ -75,6 +75,7 @@
                             <th>Aksi</th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @php
                             $i = ($wilayahs->currentPage() - 1) * $wilayahs->perPage() + 1;
@@ -104,7 +105,9 @@
                             @endphp
                         @endforeach
                     </tbody>
+
                 </table>
+
                 <div class="clearfix">
                     <div class="hint-text">Menampilkan <b>{{ $wilayahs->count() }}</b> dari
                         <b>{{ $wilayahs->total() }}</b>
@@ -129,6 +132,7 @@
                         </li>
                     </ul>
                 </div>
+                
             </div>
         </div>
 

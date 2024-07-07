@@ -27,6 +27,7 @@
 </style>
 
 <body>
+
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-lg fixed-top">
         <div class="container">
@@ -74,6 +75,7 @@
                         <th>Tanggal Laporan</th>
                     </tr>
                 </thead>
+
                 <tbody>
                     @php
                         $i = ($laporanRumahs->currentPage() - 1) * $laporanRumahs->perPage() + 1;
@@ -91,6 +93,7 @@
                         @endphp
                     @endforeach
                 </tbody>
+
             </table>
         </div>
 
@@ -120,6 +123,7 @@
                 </li>
             </ul>
         </div>
+
     </div>
 
     <!-- Modal Login -->
