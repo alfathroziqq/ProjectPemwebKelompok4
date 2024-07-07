@@ -11,6 +11,13 @@
         integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
     <link rel="stylesheet" href="{{ asset('css/admin_wilayah.css') }}">
     <link rel="icon" href="/images/rumahmiskin.png" type="image/x-icon">
+
+    <style>
+        #UserChart {
+            width: 100% !important;
+            height: 57vh !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -85,9 +92,9 @@
                     </div>
                 </div>
 
-                <div class="container d-flex justify-content-center">
+                <div class="container d-flex justify-content-start">
                     <div class="card shadow mb-4">
-                        <!-- Spesifikasi Rumah -->
+                        <!-- Spesifikasi User -->
                         <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                             <h6 class="m-0 font-weight-bold text-primary">Statistik User</h6>
                             <div class="dropdown no-arrow">

@@ -26,6 +26,12 @@
             padding-bottom: 18.5%;
             color: #fff;
         }
+
+        #SpekChart {
+            width: 100%;  /* Adjust the width as needed */
+            height: 100vh;  /* Adjust the height as needed */
+            margin: 0 auto;  /* Center the container */
+        }
     </style>
 </head>
 
