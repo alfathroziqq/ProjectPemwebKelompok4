@@ -28,9 +28,8 @@
         }
 
         #SpekChart {
-            width: 100%;  /* Adjust the width as needed */
-            height: 100vh;  /* Adjust the height as needed */
-            margin: 0 auto;  /* Center the container */
+            width: 45%;
+            margin: 0 auto;
         }
     </style>
 </head>
@@ -58,7 +57,7 @@
                         <a class="nav-link" href="#informasi">Informasi</a>
                     </li>
                     <li class="nav-item mx-2">
-                        <a class="nav-link" href="#spesifikasi">Statistik Spesifikasi</a>
+                        <a class="nav-link" href="#spesifikasi">Statistik</a>
                     </li>
                     <li class="nav-item mx-2">
                         <a class="nav-link" href="#pengumuman">Pengumuman</a>
@@ -151,16 +150,14 @@
         </div>
 
         <h3 class="text-center mb-4 mt-5" id="spesifikasi">Statistik Spesifikasi</h3>
-        <div class="container d-flex justify-content-center">
-            <div class="card shadow mb-3 mt-3">
+            <div class="shadow mb-3 mt-3">
                 <!-- Body -->
-                <div class="card-body">
+                <div>
                     <div class="chart-pie pt-4 pb-2">
                         <canvas id="SpekChart"></canvas>
                     </div>
                 </div>
             </div>
-        </div>
 
         <h3 class="text-center mb-4 mt-5" id="pengumuman">Pengumuman</h3>
         <p class="text-isi">
