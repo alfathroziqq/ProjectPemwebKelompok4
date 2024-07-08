@@ -49,6 +49,9 @@
                         <a class="nav-link" href="{{ route('home') }}">Informasi</a>
                     </li>
                     <li class="nav-item mx-2">
+                        <a class="nav-link" href="{{ route('home') }}">Statistik</a>
+                    </li>
+                    <li class="nav-item mx-2">
                         <a class="nav-link" href="{{ route('home') }}">Pengumuman</a>
                     </li>
                     <li class="nav-item mx-2">
