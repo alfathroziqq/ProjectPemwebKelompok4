@@ -36,6 +36,9 @@ class MonitoringExport implements FromCollection, WithHeadings, WithTitle, WithC
             'Latitude',
             'Longitude',
             'Deskripsi',
+            'Rumah Sehat',
+            'Rumah Tidak Sehat',
+            'Rumah Tidak Layak',
         ];
     }
 
@@ -51,6 +54,9 @@ class MonitoringExport implements FromCollection, WithHeadings, WithTitle, WithC
             $monitoring->latitude,
             $monitoring->longitude,
             $monitoring->deskripsi,
+            $monitoring->rumah_sehat,
+            $monitoring->rumah_tidak_sehat,
+            $monitoring->rumah_tidak_layak,
         ];
     }
 
@@ -79,7 +85,7 @@ class MonitoringExport implements FromCollection, WithHeadings, WithTitle, WithC
             AfterSheet::class => function(AfterSheet $event) {
                 // Title Styling
                 $event->sheet->setCellValue('A1', 'Daftar Monitoring');
-                $event->sheet->mergeCells('A1:E1');
+                $event->sheet->mergeCells('A1:H1');
                 $event->sheet->getStyle('A1')->applyFromArray([
                     'font' => [
                         'bold' => true,
@@ -96,7 +102,7 @@ class MonitoringExport implements FromCollection, WithHeadings, WithTitle, WithC
                 ]);
 
                 // Headings Styling
-                $event->sheet->getStyle('A2:E2')->applyFromArray([
+                $event->sheet->getStyle('A2:H2')->applyFromArray([
                     'font' => [
                         'bold' => true,
                         'color' => ['argb' => 'FFFFFFFF'],
@@ -117,7 +123,7 @@ class MonitoringExport implements FromCollection, WithHeadings, WithTitle, WithC
                 ]);
 
                 // Data Styling
-                $event->sheet->getStyle('A3:E' . ($event->sheet->getHighestRow()))->applyFromArray([
+                $event->sheet->getStyle('A3:H' . ($event->sheet->getHighestRow()))->applyFromArray([
                     'font' => [
                         'color' => ['argb' => 'FF000000'],
                     ],
@@ -136,6 +142,9 @@ class MonitoringExport implements FromCollection, WithHeadings, WithTitle, WithC
                 $event->sheet->getDelegate()->getColumnDimension('C')->setAutoSize(true);
                 $event->sheet->getDelegate()->getColumnDimension('D')->setAutoSize(true);
                 $event->sheet->getDelegate()->getColumnDimension('E')->setAutoSize(true);
+                $event->sheet->getDelegate()->getColumnDimension('F')->setAutoSize(true);
+                $event->sheet->getDelegate()->getColumnDimension('G')->setAutoSize(true);
+                $event->sheet->getDelegate()->getColumnDimension('H')->setAutoSize(true);
             }
         ];
     }

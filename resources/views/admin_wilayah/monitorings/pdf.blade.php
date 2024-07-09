@@ -46,6 +46,9 @@
                 <th>Latitude</th>
                 <th>Longitude</th>
                 <th>Deskripsi</th>
+                <th>Rumah Sehat</th>
+                <th>Rumah Tidak Sehat</th>
+                <th>Rumah Tidak Layak</th>
             </tr>
         </thead>
         <tbody>
@@ -56,6 +59,9 @@
                     <td>{{ $monitoring->latitude }}</td>
                     <td>{{ $monitoring->longitude }}</td>
                     <td>{{ $monitoring->deskripsi }}</td>
+                    <td>{{ $monitoring->rumah_sehat }}</td>
+                    <td>{{ $monitoring->rumah_tidak_sehat }}</td>
+                    <td>{{ $monitoring->rumah_tidak_layak }}</td>
                 </tr>
             @endforeach
         </tbody>
