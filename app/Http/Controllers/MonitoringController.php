@@ -50,6 +50,9 @@ class MonitoringController extends Controller
             'latitude' => 'required|numeric|between:-90.0,90.0',
             'longitude' => 'required|numeric|between:-180.0,180.0',
             'deskripsi' => 'nullable|string',
+            'rumah_sehat' => 'required|integer',
+            'rumah_tidak_sehat' => 'required|integer',
+            'rumah_tidak_layak' => 'required|integer',
         ]);
 
         try {
@@ -91,6 +94,9 @@ class MonitoringController extends Controller
             'latitude' => 'required|numeric|between:-90,90',
             'longitude' => 'required|numeric|between:-180,180',
             'deskripsi' => 'nullable|string',
+            'rumah_sehat' => 'required|integer',
+            'rumah_tidak_sehat' => 'required|integer',
+            'rumah_tidak_layak' => 'required|integer',
         ]);
 
         $monitoring->update($validated_data);

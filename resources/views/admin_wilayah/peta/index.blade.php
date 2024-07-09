@@ -33,10 +33,17 @@
                 popupAnchor: [0, -32]
             });
 
-            L.marker([data.latitude, data.longitude], { icon: markerIcon })
+            L.marker([data.latitude, data.longitude], {
+                    icon: markerIcon
+                })
                 .addTo(map)
-                .bindPopup('<b>' + data.provinsi + '</b><br>' + data.deskripsi);
-        });
+                .bindPopup('<b>' + data.provinsi + '</b><br>' +
+                    'Deskripsi : ' + data.deskripsi + '<br>' +
+                    '<b>Rumah Sehat :</b> ' + data.rumah_sehat + '<br>' +
+                    '<b>Rumah Tidak Sehat :</b> ' + data.rumah_tidak_sehat + '<br>' +
+                    '<b>Rumah Tidak Layak :</b> ' + data.rumah_tidak_layak);
 
+
+        });
     </script>
 @endsection

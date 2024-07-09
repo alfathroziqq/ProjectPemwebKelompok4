@@ -24,6 +24,9 @@
                     $('#latitude_monitoring').text($(this).data('latitude'));
                     $('#longitude_monitoring').text($(this).data('longitude'));
                     $('#deskripsi_monitoring').text($(this).data('deskripsi'));
+                    $('#rumah_sehat_monitoring').text($(this).data('rumah_sehat'));
+                    $('#rumah_tidak_sehat_monitoring').text($(this).data('rumah_tidak_sehat'));
+                    $('#rumah_tidak_layak_monitoring').text($(this).data('rumah_tidak_layak'));
                     $('#detailMonitoringModal').modal('show');
                 });
 
@@ -81,6 +84,9 @@
                             <th>Latitude</th>
                             <th>Longitude</th>
                             <th>Deskripsi</th>
+                            <th>Rumah Sehat</th>
+                            <th>Rumah Tidak Sehat</th>
+                            <th>Rumah Tidak Layak</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -96,12 +102,18 @@
                                 <td>{{ $monitoring->latitude }}</td>
                                 <td>{{ $monitoring->longitude }}</td>
                                 <td>{{ $monitoring->deskripsi }}</td>
+                                <td>{{ $monitoring->rumah_sehat }}</td>
+                                <td>{{ $monitoring->rumah_tidak_sehat }}</td>
+                                <td>{{ $monitoring->rumah_tidak_layak }}</td>
                                 <td>
                                     <a href="#" class="view" title="View" data-toggle="tooltip"
                                         data-provinsi="{{ $monitoring->provinsi }}"
                                         data-latitude="{{ $monitoring->latitude }}"
                                         data-longitude="{{ $monitoring->longitude }}"
-                                        data-deskripsi="{{ $monitoring->deskripsi }}">
+                                        data-deskripsi="{{ $monitoring->deskripsi }}"
+                                        data-rumah_sehat="{{ $monitoring->rumah_sehat }}"
+                                        data-rumah_tidak_sehat="{{ $monitoring->rumah_tidak_sehat }}"
+                                        data-rumah_tidak_layak="{{ $monitoring->rumah_tidak_layak }}">
                                         <i class="material-icons">&#xE417;</i>
                                     </a>
                                     <a href="{{ route('monitoring.edit', $monitoring->id) }}" class="edit" title="Edit"
@@ -150,7 +162,7 @@
                         </li>
                     </ul>
                 </div>
-                
+
             </div>
         </div>
 
@@ -178,6 +190,15 @@
 
                             <dt class="col-sm-4">Deskripsi :</dt>
                             <dd class="col-sm-8" id="deskripsi_monitoring"></dd>
+
+                            <dt class="col-sm-4">Rumah Sehat :</dt>
+                            <dd class="col-sm-8" id="rumah_sehat_monitoring"></dd>
+
+                            <dt class="col-sm-4">Rumah Tidak Sehat :</dt>
+                            <dd class="col-sm-8" id="rumah_tidak_sehat_monitoring"></dd>
+
+                            <dt class="col-sm-4">Rumah Tidak Layak :</dt>
+                            <dd class="col-sm-8" id="rumah_tidak_layak_monitoring"></dd>
                         </dl>
                     </div>
                     <div class="modal-footer">

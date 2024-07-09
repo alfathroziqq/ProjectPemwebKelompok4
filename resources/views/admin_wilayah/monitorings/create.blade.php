@@ -53,10 +53,22 @@
                         <label for="deskripsi">Deskripsi :</label>
                         <textarea class="form-control" id="deskripsi" name="deskripsi" rows="3" placeholder="Masukkan Deskripsi">{{ old('deskripsi') }}</textarea>
                     </div>
+                    <div class="form-group">
+                        <label for="rumah_sehat">Rumah Sehat :</label>
+                        <input class="form-control" type="number" id="rumah_sehat" name="rumah_sehat" placeholder="Masukkan Rumah Sehat">{{ old('rumah_sehat') }}</input>
+                    </div>
+                    <div class="form-group">
+                        <label for="rumah_tidak_sehat">Rumah Tidak Sehat :</label>
+                        <input class="form-control" type="number" id="rumah_tidak_sehat" name="rumah_tidak_sehat" placeholder="Masukkan Rumah Tidak Sehat">{{ old('rumah_tidak_sehat') }}</input>
+                    </div>
+                    <div class="form-group">
+                        <label for="rumah_tidak_layak">Rumah Tidak Layak :</label>
+                        <input class="form-control" type="number" id="rumah_tidak_layak" name="rumah_tidak_layak" placeholder="Masukkan Rumah Tidak Layak">{{ old('rumah_tidak_layak') }}</input>
+                    </div>
                     <button type="submit" class="btn btn-primary">Simpan</button>
                     <a href="{{ route('monitoring.index') }}" class="btn btn-secondary">Kembali</a>
                 </form>
-                
+
             </div>
         </div>
     </div>

@@ -21,6 +21,9 @@ class Monitoring extends Model
         'latitude',
         'longitude',
         'deskripsi',
+        'rumah_sehat',
+        'rumah_tidak_sehat',
+        'rumah_tidak_layak',
     ];
 
     /**

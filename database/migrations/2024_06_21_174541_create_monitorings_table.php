@@ -17,6 +17,9 @@ return new class extends Migration
             $table->float('latitude', 10, 6);
             $table->float('longitude', 10, 6);
             $table->text('deskripsi');
+            $table->integer('rumah_sehat');
+            $table->integer('rumah_tidak_sehat');
+            $table->integer('rumah_tidak_layak');
             $table->timestamps();
         });
     }
